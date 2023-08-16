@@ -9,7 +9,7 @@ import {
   TableBubbleMenu,
   type RichTextEditorRef,
 } from "mui-tiptap";
-import EditorMenuControls from "./EditorMenuControls";
+// import EditorMenuControls from "./EditorMenuControls";
 import useExtensions from "./useExtensions";
 import Navbar from "./UI/Section/Navbar";
 import { Editor as EditorType } from "@tiptap/core";
@@ -31,9 +31,6 @@ export default function Editor() {
   console.log(editor);
   return (
     <>
-      <button onClick={() => {
-        console.log(editor?.state.doc.content);
-      }}>Hello</button>
       <Box
         sx={{
           // An example of how editor styles can be overridden. In this case,
@@ -48,7 +45,7 @@ export default function Editor() {
           },
         }}
       >
-        <Navbar/>
+        <Navbar />
         <RichTextEditor
           ref={rteRef}
           extensions={extensions}

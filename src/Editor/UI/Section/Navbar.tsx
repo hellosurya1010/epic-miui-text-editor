@@ -5,8 +5,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 // import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuDivider, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { Editor } from '@tiptap/react';
-import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign } from './controls';
 import { MenuDivider, isTouchDevice } from 'mui-tiptap';
+import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
+import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
+import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,7 +44,7 @@ function a11yProps(index: number) {
   };
 }
 
-const InsertTabMenus = () => {
+const HomeTabMenus = () => {
   return (
     <>
       <MenuSelectFontFamily
@@ -97,6 +100,57 @@ const InsertTabMenus = () => {
   )
 }
 
+const InsertTabMenus = () => {
+  return (
+    <>
+      <MenuButtonCode />
+
+      <MenuButtonCodeBlock />
+
+      <MenuDivider />
+      <MenuButtonAddImage
+        onClick={() => {
+          const url = window.prompt("Image URL");
+
+          if (url) {
+            editor?.chain().focus().setImage({ src: url }).run();
+          }
+        }}
+      />
+
+      <MenuDivider />
+
+      <MenuButtonHorizontalRule />
+
+      <MenuButtonAddTable />
+
+      <MenuDivider />
+
+      <MenuButtonRemoveFormatting />
+
+      <MenuDivider />
+
+      <MenuButtonUndo />
+      <MenuButtonRedo />
+
+
+      <MenuDivider />
+
+      <MenuButtonTrackChangesToggler />
+      <MenuButtonAcceptChanges
+       />
+      <MenuButtonRejectChanges />
+      <MenuButtonAcceptAllChanges />
+      <MenuButtonRejectAllChanges />
+
+      <MenuDivider />
+
+      <MenuButtonFootnote />
+      <MenuButtonMathEditor />
+    </>
+  )
+}
+
 export default function Navbar() {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -110,15 +164,15 @@ export default function Navbar() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab style={{ padding: '5px' }}  label="Home" {...a11yProps(0)} />
+          <Tab style={{ padding: '5px' }} label="Home" {...a11yProps(0)} />
           <Tab style={{ padding: '5px' }} label="Insert" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <InsertTabMenus/>
+        <HomeTabMenus />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <InsertTabMenus />
       </CustomTabPanel>
     </Box>
   );
