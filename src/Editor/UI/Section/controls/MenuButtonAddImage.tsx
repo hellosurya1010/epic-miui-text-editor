@@ -1,7 +1,7 @@
 import { AddPhotoAlternate } from "@mui/icons-material";
 import type { SetRequired } from "type-fest";
-import { useEdtiorContext } from "../../../Context/EditorContext";
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
+import { useEdtiorContext } from "../../../Context/EditorContext";
 
 /**
  * You must provide your own `onClick` handler.

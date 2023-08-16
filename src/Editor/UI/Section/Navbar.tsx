@@ -10,6 +10,11 @@ import { MenuDivider, isTouchDevice } from 'mui-tiptap';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import { useEdtiorContext } from '../../Context/EditorContext';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -29,8 +34,8 @@ function CustomTabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box>
+          <Typography style={{ display: 'flex', alignItems: 'center' }}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -101,12 +106,11 @@ const HomeTabMenus = () => {
 }
 
 const InsertTabMenus = () => {
+  const { editor } = useEdtiorContext();
   return (
     <>
       <MenuButtonCode />
-
       <MenuButtonCodeBlock />
-
       <MenuDivider />
       <MenuButtonAddImage
         onClick={() => {
@@ -117,34 +121,21 @@ const InsertTabMenus = () => {
           }
         }}
       />
-
       <MenuDivider />
-
       <MenuButtonHorizontalRule />
-
       <MenuButtonAddTable />
-
       <MenuDivider />
-
       <MenuButtonRemoveFormatting />
-
       <MenuDivider />
-
       <MenuButtonUndo />
       <MenuButtonRedo />
-
-
       <MenuDivider />
-
       <MenuButtonTrackChangesToggler />
-      <MenuButtonAcceptChanges
-       />
+      <MenuButtonAcceptChanges />
       <MenuButtonRejectChanges />
       <MenuButtonAcceptAllChanges />
       <MenuButtonRejectAllChanges />
-
       <MenuDivider />
-
       <MenuButtonFootnote />
       <MenuButtonMathEditor />
     </>
@@ -152,28 +143,69 @@ const InsertTabMenus = () => {
 }
 
 export default function Navbar() {
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const [value, setValue] = React.useState('1');
+  const { editor } = useEdtiorContext();
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  // const edtior = useRichTextEditorContext();
-  // console.log(edtior);
+  type WrapperType = {
+    children: React.ReactNode,
+    value: string,
+  }
+
+  const Wrapper: React.FC<WrapperType> = (props) => {
+    return (
+      <TabPanel style={{ padding: 0 }} value={props.value}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>{props.children}</div>
+      </TabPanel>);
+  }
+
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab style={{ padding: '5px' }} label="Home" {...a11yProps(0)} />
-          <Tab style={{ padding: '5px' }} label="Insert" {...a11yProps(1)} />
-        </Tabs>
-      </Box>
-      <CustomTabPanel value={value} index={0}>
-        <HomeTabMenus />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <InsertTabMenus />
-      </CustomTabPanel>
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label="Home" value="1" />
+            <Tab label="Insert" value="2" />
+          </TabList>
+        </Box>
+        <Wrapper value='1'>
+          <HomeTabMenus />
+        </Wrapper>
+        <Wrapper value='2'>
+          <InsertTabMenus />
+        </Wrapper>
+      </TabContext>
     </Box>
   );
 }
+
+
+// export default function Navbar() {
+//   const [value, setValue] = React.useState(0);
+//   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+//     setValue(newValue);
+//   };
+
+//   // const edtior = useRichTextEditorContext();
+//   // console.log(edtior);
+
+//   return (
+//     <Box sx={{ width: '100%'}}>
+//       <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
+//         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+//           <Tab style={{ maxHeight: 10, padding: 0 }}  label="Home" {...a11yProps(0)} />
+//           <Tab style={{ maxHeight: 10, padding: 0 }}  label="Insert" {...a11yProps(1)} />
+//         </Tabs>
+//       <CustomTabPanel value={value} index={0}>
+//         <HomeTabMenus />
+//       </CustomTabPanel>
+//       <CustomTabPanel value={value} index={1}>
+//         <InsertTabMenus />
+//       </CustomTabPanel>
+//       </Box>
+//     </Box>
+//   );
+// }

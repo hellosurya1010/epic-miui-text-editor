@@ -1,4 +1,5 @@
 // import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
+import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
 import { makeStyles } from "tss-react/mui";
 import type { Except } from "type-fest";
 // import DebounceRender, {
@@ -47,7 +48,6 @@ export default function MenuControlsContainer({
   debounced,
   DebounceProps,
 }: MenuControlsContainerProps) {
-  console.log(DebounceRender);
   const { classes, cx } = useStyles();
   const content = <div className={cx(classes.root, className)}>{children}</div>;
   return debounced ? (

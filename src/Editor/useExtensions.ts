@@ -37,6 +37,7 @@ import {
   ResizableImage,
   TableImproved,
 } from "mui-tiptap";
+import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -172,6 +173,14 @@ export default function useExtensions({
       // We use the regular `History` (undo/redo) extension when not using
       // collaborative editing
       History,
+
+      TrackChangeExtension.configure({
+        enabled: false,
+        onStatusChange(status: boolean) {
+          // myTrackChangeEnabled = status
+        }
+      }),
+
     ];
   }, [placeholder]);
 }
