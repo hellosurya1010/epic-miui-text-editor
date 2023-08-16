@@ -31,7 +31,7 @@ import {
 } from "mui-tiptap";
 
 export default function EditorMenuControls() {
-  const editor = useRichTextEditorContext();
+  const {editor} = useEdtiorContext();
   return (
     <MenuControlsContainer>
       <MenuSelectFontFamily

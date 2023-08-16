@@ -126,7 +126,6 @@ export default function useExtensions({
       // https://github.com/ueberdosis/tiptap/issues/4006)
       Bold,
       Blockquote,
-
       Code,
       Italic,
       Underline,

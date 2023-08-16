@@ -12,8 +12,12 @@ import {
   useMediaQuery,
   type PaletteMode,
 } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import EditorView from "./Editor/Editor";
+import { EditorProvider } from "./Editor/Context/EditorContext";
+
+
+
 
 export default function Editor() {
   const systemSettingsPrefersDarkMode = useMediaQuery(
@@ -43,7 +47,9 @@ export default function Editor() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <EditorProvider>
         <EditorView />
+      </EditorProvider>
     </ThemeProvider>
   );
 }
