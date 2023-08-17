@@ -76,7 +76,7 @@ export default function Editor() {
               editable={isEditable}
               // renderControls={() => <EditorMenuControls />}
               onCreate={(props) => {
-                // window.editor = props.editor;
+                window.editor = props.editor;
                 setEditor(props.editor);
                 // dispatch(initEditor({ editor: props.editor }));
               }}

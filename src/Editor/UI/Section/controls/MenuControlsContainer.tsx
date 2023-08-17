@@ -1,5 +1,4 @@
 // import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
-import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
 import { makeStyles } from "tss-react/mui";
 import type { Except } from "type-fest";
 // import DebounceRender, {
