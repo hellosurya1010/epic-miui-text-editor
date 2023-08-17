@@ -38,6 +38,7 @@ import {
   TableImproved,
 } from "mui-tiptap";
 import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
+import CounterExtension from "./Extensions/Counter/Counter";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -180,6 +181,8 @@ export default function useExtensions({
           // myTrackChangeEnabled = status
         }
       }),
+
+      CounterExtension,
 
     ];
   }, [placeholder]);
