@@ -1,4 +1,5 @@
 // import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
+// import DebounceRender, { DebounceRenderProps } from "mui-tiptap/dist/utils/DebounceRender";
 import { makeStyles } from "tss-react/mui";
 import type { Except } from "type-fest";
 // import DebounceRender, {
@@ -23,7 +24,8 @@ export type MenuControlsContainerProps = {
    * Override the props/options used with debounce rendering such as the wait
    * interval, if `debounced` is true.
    */
-  DebounceProps?: Except<DebounceRenderProps, "children">;
+  // DebounceProps?: Except<DebounceRenderProps, "children">;
+  DebounceProps?: any;
 };
 
 const useStyles = makeStyles({
@@ -50,7 +52,8 @@ export default function MenuControlsContainer({
   const { classes, cx } = useStyles();
   const content = <div className={cx(classes.root, className)}>{children}</div>;
   return debounced ? (
-    <DebounceRender {...DebounceProps}>{content}</DebounceRender>
+    content
+    // <DebounceRender {...DebounceProps}>{content}</DebounceRender>
   ) : (
     content
   );

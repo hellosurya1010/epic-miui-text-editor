@@ -15,7 +15,7 @@ export default function MenuButtonOrderedList(
       tooltipShortcutKeys={["mod", "Shift", "7"]}
       IconComponent={FormatListNumbered}
       selected={editor?.isActive("orderedList") ?? false}
-      disabled={!editor?.isEditable || !editor.can().toggleOrderedList()}
+      // disabled={!editor?.isEditable || !editor.can().toggleOrderedList()}
       onClick={() => editor?.chain().focus().toggleOrderedList().run()}
       {...props}
     />

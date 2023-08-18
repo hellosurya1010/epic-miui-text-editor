@@ -15,7 +15,7 @@ export default function MenuButtonBulletedList(
       tooltipShortcutKeys={["mod", "Shift", "8"]}
       IconComponent={FormatListBulleted}
       selected={editor?.isActive("bulletList") ?? false}
-      disabled={!editor?.isEditable || !editor.can().toggleBulletList()}
+      // disabled={!editor?.isEditable || !editor.can().toggleBulletList()}
       onClick={() => editor?.chain().focus().toggleBulletList().run()}
       {...props}
     />

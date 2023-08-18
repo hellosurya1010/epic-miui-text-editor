@@ -13,7 +13,7 @@ export default function MenuButtonTaskList(props: MenuButtonTaskListProps) {
       tooltipShortcutKeys={["mod", "Shift", "9"]}
       IconComponent={Checklist}
       selected={editor?.isActive("taskList") ?? false}
-      disabled={!editor?.isEditable || !editor.can().toggleTaskList()}
+      // disabled={!editor?.isEditable || !editor.can().toggleTaskList()}
       onClick={() => editor?.chain().focus().toggleTaskList().run()}
       {...props}
     />

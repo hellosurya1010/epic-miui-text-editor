@@ -14,6 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useEdtiorContext } from '../../Context/EditorContext';
+import { colors } from '@mui/material';
 
 
 interface TabPanelProps {
@@ -163,7 +164,7 @@ export default function Navbar() {
 
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1' }}>
+    <Box sx={{ width: '100%', typography: 'body1' }} style={{background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important'}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">

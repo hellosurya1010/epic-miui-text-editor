@@ -28,30 +28,17 @@ export default function Editor() {
   const [submittedContent, setSubmittedContent] = useState("");
 
   const { editor, setEditor } = useEdtiorContext();
-  console.log(editor);
   return (
-    <>
-      <Grid container spacing={2}>
+    <div>
+      <Grid style={{position: 'fixed', top: 0, zIndex: 1000}} container boxShadow={'initial'} spacing={2}>
         <Grid item xs={12}>
           <Navbar />
         </Grid>
       </Grid>
 
-      {/* <Grid container spacing={2}>
-        <Grid bgcolor={colors.grey['400']} item xs={8}>
-        </Grid>
-        <Grid bgcolor={colors.grey['500']} item xs={4}>
-        </Grid>
-        <Grid bgcolor={colors.grey['600']} item xs={4}>
-        </Grid>
-        <Grid bgcolor={colors.grey['700']} item xs={8}>
-        </Grid>
-      </Grid> */}
-
-      <Grid container>
-        <Grid zIndex={'-30'} item bgcolor={colors.grey['400']} xs={2}>
-        </Grid>
-        <Grid item bgcolor={colors.grey['200']} xs={8}>
+      <Grid style={{ background: 'linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%)', marginTop: '79px' }} container>
+        <Grid item xs={2}></Grid>
+        <Grid item  xs={8}>
           <Box
             bgcolor={colors.grey['A100']}
             sx={{
@@ -76,7 +63,7 @@ export default function Editor() {
               editable={isEditable}
               // renderControls={() => <EditorMenuControls />}
               onCreate={(props) => {
-                window.editor = props.editor;
+                // window.editor = props.editor;
                 setEditor(props.editor);
                 // dispatch(initEditor({ editor: props.editor }));
               }}
@@ -98,9 +85,8 @@ export default function Editor() {
             </RichTextEditor>
           </Box>
         </Grid>
-        <Grid item bgcolor={colors.grey['400']} xs={2}>
-        </Grid>
+        <Grid item xs={2}></Grid>
       </Grid>
-    </>
+    </div>
   );
 }
