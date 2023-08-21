@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 // import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuDivider, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { Editor } from '@tiptap/react';
-import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign } from './controls';
 import { MenuDivider, isTouchDevice } from 'mui-tiptap';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
@@ -14,7 +14,9 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useEdtiorContext } from '../../Context/EditorContext';
-import { colors } from '@mui/material';
+import { Button, Container, Divider, Grid, Paper, colors } from '@mui/material';
+import FileButton from './controls/FileSaveButton/FileSaveButton';
+import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
 
 
 interface TabPanelProps {
@@ -53,6 +55,7 @@ function a11yProps(index: number) {
 const HomeTabMenus = () => {
   return (
     <>
+      <FileSaveButton />
       <MenuSelectFontFamily
         options={[
           { label: "Comic Sans", value: "Comic Sans MS, Comic Sans" },
@@ -77,7 +80,7 @@ const HomeTabMenus = () => {
       <MenuDivider />
       <MenuButtonBold />
       <MenuButtonItalic />
-      <MenuButtonUnderline />
+      {/* <MenuButtonUnderline /> */}
       <MenuButtonStrikethrough />
       <MenuButtonSubscript />
       <MenuButtonSuperscript />
@@ -144,42 +147,54 @@ const InsertTabMenus = () => {
 }
 
 export default function Navbar() {
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState(1);
   const { editor } = useEdtiorContext();
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   type WrapperType = {
     children: React.ReactNode,
-    value: string,
+    value: number,
   }
 
   const Wrapper: React.FC<WrapperType> = (props) => {
     return (
-      <TabPanel style={{ padding: 0 }} value={props.value}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>{props.children}</div>
-      </TabPanel>);
+      props.value == value ? <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>{props.children}</div> : <></>);
   }
 
+  const TabButton = (props: { label: string, index: number }) => {
+    const style = {
+      textTransform: 'none',
+      borderRadius: '0',
+      borderBottom: `2px solid ${props.index == value ? colors.blue['400'] : 'transparent'}`
+    };
+    return (<Button
+      style={style}
+      onClick={() => setValue(props.index)}
+      size="small"
+    >
+      {props.label}
+    </Button>)
+  }
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1' }} style={{background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important'}}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Home" value="1" />
-            <Tab label="Insert" value="2" />
-          </TabList>
-        </Box>
-        <Wrapper value='1'>
-          <HomeTabMenus />
-        </Wrapper>
-        <Wrapper value='2'>
-          <InsertTabMenus />
-        </Wrapper>
-      </TabContext>
-    </Box>
+    <>
+      <Paper elevation={4} sx={{ width: '100%' }} style={{ background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important', padding: '0 15px' }}>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <TabButton index={1} label='Home' />
+          <TabButton index={2} label='Insert' />
+        </div>
+        <MenuControlsContainer>
+          <Wrapper value={1}>
+            <HomeTabMenus />
+          </Wrapper>
+          <Wrapper value={2}>
+            <InsertTabMenus />
+          </Wrapper>
+        </MenuControlsContainer>
+      </Paper>
+    </>
   );
 }
 

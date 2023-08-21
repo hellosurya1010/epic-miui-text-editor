@@ -180,6 +180,8 @@ export default function MenuSelectHeading({
     return new Set(headingExtension?.options.levels ?? []);
   }, [editor]);
 
+  console.log({selectedValue});
+
   return (
     // We currently have to specify that the value is of type
     // `HeadingOptionValue | ""` rather than just `HeadingOptionValue` due to

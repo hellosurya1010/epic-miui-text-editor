@@ -7,6 +7,7 @@ export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonBold(props: MenuButtonBoldProps) {
   const {editor} = useEdtiorContext();
+  console.log('hello');
   return (
     <MenuButton
       tooltipLabel="Bold"

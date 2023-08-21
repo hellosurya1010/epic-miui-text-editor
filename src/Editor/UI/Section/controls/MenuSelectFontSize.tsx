@@ -108,7 +108,7 @@ const DEFAULT_FONT_SIZE_SELECT_OPTIONS: MenuSelectFontSizeProps["options"] = [
 // add typing for those
 interface TextStyleAttrs
   extends ReturnType<Editor["getAttributes"]>,
-    FontSizeAttrs {}
+  FontSizeAttrs { }
 
 function stripPxFromValue(value: string): string {
   return value.replace("px", "");
@@ -126,7 +126,7 @@ export default function MenuSelectFontSize({
   ...menuSelectProps
 }: MenuSelectFontSizeProps) {
   const { classes, cx } = useStyles();
-  const {editor} = useEdtiorContext();
+  const { editor } = useEdtiorContext();
 
   // Handle deprecated legacy names for some props:
   emptyLabel = emptyValue ?? emptyLabel;
@@ -139,6 +139,8 @@ export default function MenuSelectFontSize({
   const currentAttrs: TextStyleAttrs | undefined =
     editor?.getAttributes("textStyle");
   const currentFontSize = currentAttrs?.fontSize;
+  console.log({ currentFontSize });
+
 
   return (
     <MenuSelect<string>

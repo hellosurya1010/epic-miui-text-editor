@@ -38,6 +38,9 @@ import {
   TableImproved,
 } from "mui-tiptap";
 import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
+import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
+import { CustomHeading } from "./Extensions/ExtendedExtensions/ExtendedHeading";
+import './Extensions/ExtendedExtensions/ExtendedStyles.css'
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -115,7 +118,7 @@ export default function useExtensions({
       HardBreak,
       ListItem,
       OrderedList,
-      Paragraph,
+      // Paragraph,
       CustomSubscript,
       CustomSuperscript,
       Text,
@@ -147,7 +150,7 @@ export default function useExtensions({
 
       // Extensions
       Gapcursor,
-      HeadingWithAnchor,
+      // HeadingWithAnchor,
       TextAlign.configure({
         types: ["heading", "paragraph", "image"],
       }),
@@ -181,6 +184,8 @@ export default function useExtensions({
         }
       }),
 
+      CustomParagraph,
+      CustomHeading,
     ];
   }, [placeholder]);
 }
