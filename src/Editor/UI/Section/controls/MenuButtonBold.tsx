@@ -7,7 +7,6 @@ export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonBold(props: MenuButtonBoldProps) {
   const editor = useRichTextEditorContext();
-  console.log('hello');
   return (
     <MenuButton
       tooltipLabel="Bold"

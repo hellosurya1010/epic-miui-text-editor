@@ -1,5 +1,5 @@
 import { Lock, LockOpen, TextFields } from "@mui/icons-material";
-import { Box, Button, Grid, Stack, Typography, colors } from "@mui/material";
+import { Box, Button, Grid, LinearProgress, Stack, Typography, colors } from "@mui/material";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor } from "@tiptap/react";
 import {
@@ -38,6 +38,10 @@ export default function Editor() {
     content: exampleContent,
   });
 
+  useEffect(() => {
+    window.editor = editor;
+  }, [editor]);
+
   const TableFlotingButtons = () => {
     return (<>
       <LinkBubbleMenu />
@@ -49,6 +53,7 @@ export default function Editor() {
     <RichTextEditorProvider editor={editor}>
       <Grid style={{ position: 'fixed', top: 0, zIndex: 1000 }} container boxShadow={'initial'} spacing={2}>
         <Grid item xs={12}>
+          {/* {true && <LinearProgress style={{ height: '2px', position: 'relative' }} color="info" />} */}
           <Navbar />
         </Grid>
       </Grid>

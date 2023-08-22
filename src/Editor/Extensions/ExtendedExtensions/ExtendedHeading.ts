@@ -23,7 +23,7 @@ export const CustomHeading = Heading.extend({
         }
     },
     renderHTML({ node, HTMLAttributes }) {
-        console.log(HTMLAttributes, node.attrs.level);
+        // console.log(HTMLAttributes, node.attrs.level);
         const hasLevel = this.options.levels.includes(node.attrs.level)
         const level = hasLevel
             ? node.attrs.level

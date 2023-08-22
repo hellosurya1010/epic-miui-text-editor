@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import EditorView from "./Editor/Editor";
+import { ProgressbarProvider } from "./Editor/Context/ProgressbarContext";
 
 
 
