@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-subscript" />
 import { Subscript } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonSubscriptProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonSubscript(props: MenuButtonSubscriptProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Subscript"

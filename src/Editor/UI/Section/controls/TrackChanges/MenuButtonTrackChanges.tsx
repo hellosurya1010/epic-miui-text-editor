@@ -1,5 +1,5 @@
 /// <reference types="@tiptap/extension-underline" />
-import { useEdtiorContext } from "../../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "../MenuButton";
 
 import DoneIcon from '@mui/icons-material/Done';
@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 export type MenuButtonTrackChangesProps = Partial<MenuButtonProps>;
 
 export function MenuButtonTrackChangesToggler(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   type Status = {
     isTracking: boolean,
     isToggling: boolean,
@@ -37,7 +37,7 @@ export function MenuButtonTrackChangesToggler(props: MenuButtonTrackChangesProps
 }
 
 export function MenuButtonAcceptChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Accept change"
@@ -51,7 +51,7 @@ export function MenuButtonAcceptChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonRejectChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Reject change"
@@ -65,7 +65,7 @@ export function MenuButtonRejectChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonAcceptAllChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Accept all changes"
@@ -79,7 +79,7 @@ export function MenuButtonAcceptAllChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonRejectAllChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Reject all changes"

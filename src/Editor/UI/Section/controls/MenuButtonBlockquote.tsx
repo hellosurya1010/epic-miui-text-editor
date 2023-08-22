@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-blockquote" />
 import { FormatQuote } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonBlockquoteProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonBlockquote(props: MenuButtonBlockquoteProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Blockquote"

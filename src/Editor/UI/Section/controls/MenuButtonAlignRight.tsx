@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-text-align" />
 import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonAlignRightProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonAlignRight(props: MenuButtonAlignRightProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Right align"

@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 // import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuDivider, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { Editor } from '@tiptap/react';
-import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign } from './controls';
-import { MenuDivider, isTouchDevice } from 'mui-tiptap';
+import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+import { MenuDivider, MenuSelectFontSize, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
@@ -56,6 +56,7 @@ const HomeTabMenus = () => {
   return (
     <>
       <FileSaveButton />
+      <MenuDivider />
       <MenuSelectFontFamily
         options={[
           { label: "Comic Sans", value: "Comic Sans MS, Comic Sans" },
@@ -76,11 +77,11 @@ const HomeTabMenus = () => {
       <MenuDivider />
       <MenuSelectHeading />
       <MenuDivider />
-      <MenuSelectFontSize />
-      <MenuDivider />
+      {/* <MenuSelectFontSize />
+      <MenuDivider /> */}
       <MenuButtonBold />
       <MenuButtonItalic />
-      {/* <MenuButtonUnderline /> */}
+      <MenuButtonUnderline />
       <MenuButtonStrikethrough />
       <MenuButtonSubscript />
       <MenuButtonSuperscript />
@@ -110,7 +111,7 @@ const HomeTabMenus = () => {
 }
 
 const InsertTabMenus = () => {
-  const { editor } = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <>
       <MenuButtonCode />
@@ -148,7 +149,7 @@ const InsertTabMenus = () => {
 
 export default function Navbar() {
   const [value, setValue] = React.useState(1);
-  const { editor } = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

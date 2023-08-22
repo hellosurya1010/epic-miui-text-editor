@@ -1,12 +1,12 @@
 import { Link } from "@mui/icons-material";
 import { useRef } from "react";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonEditLinkProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonEditLink(props: MenuButtonEditLinkProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   return (
     <MenuButton

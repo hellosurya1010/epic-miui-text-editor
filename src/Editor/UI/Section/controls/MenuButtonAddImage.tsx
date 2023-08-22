@@ -1,7 +1,7 @@
 import { AddPhotoAlternate } from "@mui/icons-material";
 import type { SetRequired } from "type-fest";
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 
 /**
  * You must provide your own `onClick` handler.
@@ -27,7 +27,7 @@ export type MenuButtonAddImageProps = SetRequired<
 export default function MenuButtonAddImage({
   ...props
 }: MenuButtonAddImageProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
 
   return (
     <MenuButton

@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-code-block" />
 import { BiCodeBlock } from "react-icons/bi";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonCodeBlockProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonCodeBlock(props: MenuButtonCodeBlockProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Code block"

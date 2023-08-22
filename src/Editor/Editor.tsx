@@ -1,6 +1,7 @@
 import { Lock, LockOpen, TextFields } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, Typography, colors } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useEditor } from "@tiptap/react";
 import {
   LinkBubbleMenu,
   MenuButton,
@@ -8,6 +9,9 @@ import {
   RichTextReadOnly,
   TableBubbleMenu,
   type RichTextEditorRef,
+  RichTextEditorProvider,
+  RichTextField,
+  useRichTextEditorContext,
 } from "mui-tiptap";
 // import EditorMenuControls from "./EditorMenuControls";
 import useExtensions from "./useExtensions";
@@ -28,10 +32,22 @@ export default function Editor() {
   const [showMenuBar, setShowMenuBar] = useState(true);
   const [submittedContent, setSubmittedContent] = useState("");
 
-  const { editor, setEditor } = useEdtiorContext();
+
+  const editor = useEditor({
+    extensions: extensions,
+    content: exampleContent,
+  });
+
+  const TableFlotingButtons = () => {
+    return (<>
+      <LinkBubbleMenu />
+      <TableBubbleMenu />
+    </>)
+  };
+
   return (
-    <>
-      <Grid style={{position: 'fixed', top: 0, zIndex: 1000}} container boxShadow={'initial'} spacing={2}>
+    <RichTextEditorProvider editor={editor}>
+      <Grid style={{ position: 'fixed', top: 0, zIndex: 1000 }} container boxShadow={'initial'} spacing={2}>
         <Grid item xs={12}>
           <Navbar />
         </Grid>
@@ -39,7 +55,7 @@ export default function Editor() {
 
       <Grid style={{ background: 'linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%)', marginTop: '61px' }} container>
         <Grid item xs={2}></Grid>
-        <Grid item marginTop={'10px'}  xs={8} >
+        <Grid item marginTop={'10px'} xs={8} >
           <Box
             bgcolor={colors.grey['A100']}
             sx={{
@@ -57,7 +73,9 @@ export default function Editor() {
               margin: "0 auto",
             }}
           >
-            <RichTextEditor
+            <RichTextField />
+            <TableFlotingButtons />
+            {/* <RichTextEditor
               ref={rteRef}
               extensions={extensions}
               content={exampleContent}
@@ -83,11 +101,11 @@ export default function Editor() {
                   <TableBubbleMenu />
                 </>
               )}
-            </RichTextEditor>
+            </RichTextEditor> */}
           </Box>
         </Grid>
         <Grid item xs={2}></Grid>
       </Grid>
-    </>
+    </RichTextEditorProvider>
   );
 }

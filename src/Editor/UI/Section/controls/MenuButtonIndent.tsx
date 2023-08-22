@@ -1,11 +1,11 @@
 import { FormatIndentIncrease } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonIndentProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonIndent(props: MenuButtonIndentProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Indent"

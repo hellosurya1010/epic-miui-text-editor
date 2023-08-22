@@ -1,6 +1,6 @@
 /// <reference types="@tiptap/extension-superscript" />
 import { Superscript } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonSuperscriptProps = Partial<MenuButtonProps>;
@@ -8,7 +8,7 @@ export type MenuButtonSuperscriptProps = Partial<MenuButtonProps>;
 export default function MenuButtonSuperscript(
   props: MenuButtonSuperscriptProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Superscript"

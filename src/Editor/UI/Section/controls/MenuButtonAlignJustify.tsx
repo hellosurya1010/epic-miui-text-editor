@@ -1,6 +1,6 @@
 /// <reference types="@tiptap/extension-text-align" />
 import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonAlignJustifyProps = Partial<MenuButtonProps>;
@@ -8,7 +8,7 @@ export type MenuButtonAlignJustifyProps = Partial<MenuButtonProps>;
 export default function MenuButtonAlignJustify(
   props: MenuButtonAlignJustifyProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Justify"

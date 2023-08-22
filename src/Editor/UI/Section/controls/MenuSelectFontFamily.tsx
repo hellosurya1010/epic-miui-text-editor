@@ -3,7 +3,7 @@ import { MenuItem } from "@mui/material";
 import type { Editor } from "@tiptap/core";
 import type { ReactNode } from "react";
 import type { Except } from "type-fest";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuSelect, { type MenuSelectProps } from "./MenuSelect";
 
 export type FontFamilySelectOption = {
@@ -71,7 +71,7 @@ export default function MenuSelectFontFamily({
   emptyLabel = "Font family",
   ...menuSelectProps
 }: MenuSelectFontFamilyProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
 
   const currentAttrs: TextStyleAttrs | undefined =
     editor?.getAttributes("textStyle");

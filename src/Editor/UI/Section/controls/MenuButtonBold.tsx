@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-bold" />
 import { FormatBold } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonBold(props: MenuButtonBoldProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   console.log('hello');
   return (
     <MenuButton

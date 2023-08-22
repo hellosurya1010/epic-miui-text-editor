@@ -1,13 +1,13 @@
 /// <reference types="@tiptap/extension-bold" />
 import SaveIcon from '@mui/icons-material/Save';
-import { useEdtiorContext } from "../../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton from "../MenuButton";
 import { MenuButtonProps } from "mui-tiptap";
 
 export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 
 export default function FileSaveButton(props: MenuButtonBoldProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Save"
