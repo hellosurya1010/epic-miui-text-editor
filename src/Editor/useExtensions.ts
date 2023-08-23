@@ -41,6 +41,7 @@ import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
 import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
 import { CustomHeading } from "./Extensions/ExtendedExtensions/ExtendedHeading";
 import './Extensions/ExtendedExtensions/ExtendedStyles.css'
+import { FileSave } from "./Extensions/FileSave/FileSave";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -186,6 +187,7 @@ export default function useExtensions({
 
       CustomParagraph,
       CustomHeading,
+      FileSave,
     ];
   }, [placeholder]);
 }

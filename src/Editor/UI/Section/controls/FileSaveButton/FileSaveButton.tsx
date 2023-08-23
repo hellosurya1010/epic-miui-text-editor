@@ -27,9 +27,13 @@ export default function FileSaveButton(props: MenuButtonBoldProps) {
           <SaveIcon {...props} /> :  <CircularProgress style={{color: grey['800']}} size={18} />
         )
       }}
+      disabled={fileSave.isSaving}
       // selected={editor?.isActive("bold") ?? false}
       // disabled={!editor?.isEditable || !editor.can().toggleBold()}
-      onClick={() => editor?.chain().focus().toggleBold().run()}
+      onClick={() => {
+        console.log('hello surya');
+        editor?.commands.saveFile();
+      }}
       {...props}
     />
   );
