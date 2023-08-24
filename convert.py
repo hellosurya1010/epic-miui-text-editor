@@ -4,11 +4,6 @@ with open('content.json', 'r') as json_file:
     data = json.load(json_file)
 
 
-def parserFunciton(tag):
-    def parser(node):
-        print(node)
-    return parser
-
 blockTags = {
     "doc": parserFunciton("doc"),
     "heading": parserFunciton("heading"),
