@@ -31,9 +31,10 @@ def innterContent(innerNodes):
     return ""
 
 def jsonToHTML(nodes):
-
+    count1 = 0
     def nodesParser(node):
         tag = node['type']  
+        count1 += 1
         if tag == "text":
             return node['text']
         else:
