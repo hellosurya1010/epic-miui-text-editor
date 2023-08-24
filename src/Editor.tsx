@@ -25,9 +25,11 @@ export default function Editor() {
   const systemSettingsPrefersDarkMode = useMediaQuery(
     "(prefers-color-scheme: light)"
   );
-  const [paletteMode, setPaletteMode] = useState<PaletteMode>(
-    systemSettingsPrefersDarkMode ? "dark" : "light"
-  );
+
+  const [paletteMode, setPaletteMode] = useState<PaletteMode>("light");
+  // const [paletteMode, setPaletteMode] = useState<PaletteMode>(
+  //   systemSettingsPrefersDarkMode ? "dark" : "light"
+  // );
   const togglePaletteMode = useCallback(
     () =>
       setPaletteMode((prevMode) => (prevMode === "light" ? "dark" : "light")),
