@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-history" />
 import UndoIcon from "@mui/icons-material/Undo";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonUndoProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonUndo(props: MenuButtonUndoProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Undo"

@@ -11,7 +11,7 @@ import {
   RiMergeCellsHorizontal,
   RiSplitCellsHorizontal,
 } from "react-icons/ri";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton from "./MenuButton";
 import MenuControlsContainer from "./MenuControlsContainer";
 import { MenuDivider } from "mui-tiptap";
@@ -47,7 +47,7 @@ export default function TableMenuControls({
   className,
   labels,
 }: TableMenuControlsProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuControlsContainer className={className}>
       <MenuButton

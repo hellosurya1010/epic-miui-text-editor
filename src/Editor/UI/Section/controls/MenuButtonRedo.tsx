@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-history" />
 import RedoIcon from "@mui/icons-material/Redo";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonRedoProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonRedo(props: MenuButtonRedoProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Redo"

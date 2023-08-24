@@ -41,6 +41,10 @@ import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
 import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
 import { CustomHeading } from "./Extensions/ExtendedExtensions/ExtendedHeading";
 import './Extensions/ExtendedExtensions/ExtendedStyles.css'
+import { FileSave } from "./Extensions/FileSave/FileSave";
+import { ExtendedItalic } from "./Extensions/ExtendedExtensions/ExtendedItalic";
+import { SpanRetain, getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
+import { Footnote } from "./Extensions/Footnote/Footnote";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -90,6 +94,7 @@ export default function useExtensions({
 }: UseExtensionsOptions = {}): EditorOptions["extensions"] {
   return useMemo(() => {
     return [
+      ...getWordTagsNode(),
       // We incorporate all of the functionality that's part of
       // https://tiptap.dev/api/extensions/starter-kit, plus a few additional
       // extensions, including mui-tiptap's
@@ -118,7 +123,7 @@ export default function useExtensions({
       HardBreak,
       ListItem,
       OrderedList,
-      // Paragraph,
+      Paragraph,
       CustomSubscript,
       CustomSuperscript,
       Text,
@@ -131,7 +136,7 @@ export default function useExtensions({
       Bold,
       Blockquote,
       Code,
-      Italic,
+      // Italic,
       Underline,
       Strike,
       CustomLinkExtension.configure({
@@ -184,8 +189,14 @@ export default function useExtensions({
         }
       }),
 
-      CustomParagraph,
+      // CustomParagraph,
       CustomHeading,
+      FileSave,
+      Footnote,
+
+      ExtendedItalic,
+      // SpanRetain,
+      ...getWordTagsMark(),
     ];
   }, [placeholder]);
 }

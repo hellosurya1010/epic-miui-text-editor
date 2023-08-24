@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-code" />
 import { Code } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonCodeProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonCode(props: MenuButtonCodeProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Code"

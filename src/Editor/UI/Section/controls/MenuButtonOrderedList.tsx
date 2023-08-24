@@ -1,6 +1,6 @@
 /// <reference types="@tiptap/extension-ordered-list" />
 import { FormatListNumbered } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonOrderedListProps = Partial<MenuButtonProps>;
@@ -8,7 +8,7 @@ export type MenuButtonOrderedListProps = Partial<MenuButtonProps>;
 export default function MenuButtonOrderedList(
   props: MenuButtonOrderedListProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Ordered list"

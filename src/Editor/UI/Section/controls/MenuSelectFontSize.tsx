@@ -4,7 +4,7 @@ import type { Editor } from "@tiptap/core";
 import type { ReactNode } from "react";
 import { makeStyles } from "tss-react/mui";
 import type { Except } from "type-fest";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 // import type { FontSizeAttrs } from "../extensions/FontSize";
 import { MENU_BUTTON_FONT_SIZE_DEFAULT } from "./MenuButton";
 import MenuSelect, { type MenuSelectProps } from "./MenuSelect";
@@ -126,7 +126,7 @@ export default function MenuSelectFontSize({
   ...menuSelectProps
 }: MenuSelectFontSizeProps) {
   const { classes, cx } = useStyles();
-  const { editor } = useEdtiorContext();
+  const editor = useRichTextEditorContext();
 
   // Handle deprecated legacy names for some props:
   emptyLabel = emptyValue ?? emptyLabel;

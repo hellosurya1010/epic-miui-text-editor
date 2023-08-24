@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import MenuButton, { MenuButtonProps } from '../MenuButton';
-import { useEdtiorContext } from "../../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import FunctionsIcon from '@mui/icons-material/Functions';
 
 export type MathEditorButtonProps = Partial<MenuButtonProps>;
@@ -14,7 +14,7 @@ export type MathEditorButtonProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonMathEditor(props: MathEditorButtonProps) {
   const [open, setOpen] = React.useState(false);
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   const mathEditorRef = React.useRef<HTMLIFrameElement | null>(null);
   const handleClickOpen = () => {
     setOpen(true);

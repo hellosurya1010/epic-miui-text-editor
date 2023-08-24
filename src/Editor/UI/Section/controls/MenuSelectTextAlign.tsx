@@ -5,7 +5,7 @@ import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
 import { MenuItem, type SelectChangeEvent } from "@mui/material";
 import { useCallback, useMemo } from "react";
 import { makeStyles } from "tss-react/mui";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButtonTooltip, {
   type MenuButtonTooltipProps,
 } from "./MenuButtonTooltip";
@@ -122,7 +122,7 @@ export default function MenuSelectTextAlign({
   ...menuSelectProps
 }: MenuSelectTextAlignProps) {
   const { classes } = useStyles();
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
 
   // Handle the deprecated name for the `options` prop if present
   options =

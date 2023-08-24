@@ -4,7 +4,7 @@ import type { Heading, Level } from "@tiptap/extension-heading";
 import { useCallback, useMemo, type ReactNode } from "react";
 import { makeStyles } from "tss-react/mui";
 import type { Except } from "type-fest";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import { getEditorStyles } from "./styles";
 import MenuButtonTooltip from "./MenuButtonTooltip";
 import MenuSelect, { type MenuSelectProps } from "./MenuSelect";
@@ -129,7 +129,7 @@ export default function MenuSelectHeading({
   ...menuSelectProps
 }: MenuSelectHeadingProps) {
   const { classes, cx } = useStyles();
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
 
   const handleHeadingType: (
     event: SelectChangeEvent<"" | HeadingOptionValue>
@@ -179,8 +179,6 @@ export default function MenuSelectHeading({
     );
     return new Set(headingExtension?.options.levels ?? []);
   }, [editor]);
-
-  console.log({selectedValue});
 
   return (
     // We currently have to specify that the value is of type

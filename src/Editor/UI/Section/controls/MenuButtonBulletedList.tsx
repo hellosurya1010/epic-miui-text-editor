@@ -1,6 +1,6 @@
 /// <reference types="@tiptap/extension-bullet-list" />
 import { FormatListBulleted } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonBulletedListProps = Partial<MenuButtonProps>;
@@ -8,7 +8,7 @@ export type MenuButtonBulletedListProps = Partial<MenuButtonProps>;
 export default function MenuButtonBulletedList(
   props: MenuButtonBulletedListProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Bulleted list"

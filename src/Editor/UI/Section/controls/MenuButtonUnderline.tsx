@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-underline" />
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonUnderlineProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonUnderline(props: MenuButtonUnderlineProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Underline"

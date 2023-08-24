@@ -1,5 +1,5 @@
 import { FormatClear } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonRemoveFormattingProps = Partial<MenuButtonProps>;
@@ -11,7 +11,7 @@ export type MenuButtonRemoveFormattingProps = Partial<MenuButtonProps>;
 export default function MenuButtonRemoveFormatting(
   props: MenuButtonRemoveFormattingProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Remove inline formatting"

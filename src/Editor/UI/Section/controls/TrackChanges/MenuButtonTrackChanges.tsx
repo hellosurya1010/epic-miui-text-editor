@@ -1,5 +1,5 @@
 /// <reference types="@tiptap/extension-underline" />
-import { useEdtiorContext } from "../../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "../MenuButton";
 
 import DoneIcon from '@mui/icons-material/Done';
@@ -8,28 +8,32 @@ import RemoveDoneIcon from '@mui/icons-material/RemoveDone';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from "react";
+import { EXTENSION_NAME } from '../../../../Extensions/TrackChanges/TrackChanges';
 
 
 export type MenuButtonTrackChangesProps = Partial<MenuButtonProps>;
 
 export function MenuButtonTrackChangesToggler(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
-  type Status = {
-    isTracking: boolean,
-    isToggling: boolean,
-  }
-  const [status, setStatus] = useState<Status>({isTracking: false, isToggling: false});
+  const editor = useRichTextEditorContext();
+  // type Status = {
+  //   isTracking: boolean,
+  //   isToggling: boolean,
+  // }
+  // const [status, setStatus] = useState<Status>({isTracking: false, isToggling: false});
+
+  const enabled =  editor?.extensionManager.extensions.find(item => item.name == EXTENSION_NAME)?.options.enabled
 
   return (
     <MenuButton
-      tooltipLabel={`${status.isTracking ? "Disable" : "Enable"} track changes`}
-      IconComponent={(props) => <TrackChangesIcon color={`${status.isTracking ? "error" : "success"}`} {...props} />}
-      disabled={status.isToggling}
-      selected={status.isToggling}
+      tooltipLabel={`${enabled ? "Disable" : "Enable"} track changes`}
+      IconComponent={(props) => <TrackChangesIcon color={`${enabled ? "error" : "success"}`} {...props} />}
+      disabled={enabled}
+      selected={enabled}
       onClick={() => {
-        setStatus((pre: Status) => ({...pre, isToggling: true}));
+        // setStatus((pre: Status) => ({...pre, isToggling: true}));
+        console.log(enabled);
         editor?.chain().focus().toggleTrackChangeStatus().run();
-        setStatus((pre: Status) => ({...pre, isToggling: false, isTracking: !pre.isTracking}));
+        // setStatus((pre: Status) => ({...pre, isToggling: false, isTracking: !pre.isTracking}));
       }}
       {...props}
     />
@@ -37,7 +41,7 @@ export function MenuButtonTrackChangesToggler(props: MenuButtonTrackChangesProps
 }
 
 export function MenuButtonAcceptChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Accept change"
@@ -51,7 +55,7 @@ export function MenuButtonAcceptChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonRejectChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Reject change"
@@ -65,7 +69,7 @@ export function MenuButtonRejectChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonAcceptAllChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Accept all changes"
@@ -79,7 +83,7 @@ export function MenuButtonAcceptAllChanges(props: MenuButtonTrackChangesProps) {
 }
 
 export function MenuButtonRejectAllChanges(props: MenuButtonTrackChangesProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Reject all changes"

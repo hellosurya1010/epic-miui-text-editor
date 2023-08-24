@@ -1,12 +1,12 @@
 /// <reference types="@tiptap/extension-italic" />
 import { FormatItalic } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonItalicProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonItalic(props: MenuButtonItalicProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Italic"

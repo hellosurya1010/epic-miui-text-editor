@@ -1,3 +1,8 @@
+.ExtraClass{
+    border-bottom: 2px solid red;
+    font-family: monospace;
+}
+
 .Heading1 {
     display: block;
     font-size: 2em;

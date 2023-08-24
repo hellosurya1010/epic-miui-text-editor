@@ -1,6 +1,6 @@
 /// <reference types="@tiptap/extension-strike" />
 import { StrikethroughS } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonStrikethroughProps = Partial<MenuButtonProps>;
@@ -8,7 +8,7 @@ export type MenuButtonStrikethroughProps = Partial<MenuButtonProps>;
 export default function MenuButtonStrikethrough(
   props: MenuButtonStrikethroughProps
 ) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Strikethrough"

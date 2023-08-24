@@ -1,11 +1,11 @@
 import { FormatIndentDecrease } from "@mui/icons-material";
-import { useEdtiorContext } from "../../../Context/EditorContext";
+import { useRichTextEditorContext } from 'mui-tiptap';
 import MenuButton, { type MenuButtonProps } from "./MenuButton";
 
 export type MenuButtonUnindentProps = Partial<MenuButtonProps>;
 
 export default function MenuButtonUnindent(props: MenuButtonUnindentProps) {
-  const {editor} = useEdtiorContext();
+  const editor = useRichTextEditorContext();
   return (
     <MenuButton
       tooltipLabel="Unindent"
