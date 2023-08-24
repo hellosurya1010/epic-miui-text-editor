@@ -56,6 +56,10 @@ const HomeTabMenus = () => {
   return (
     <>
       <FileSaveButton />
+      <button onClick={() => {
+        console.log('hello');
+        
+      }}>hello</button>
       <MenuDivider />
       <MenuSelectFontFamily
         options={[

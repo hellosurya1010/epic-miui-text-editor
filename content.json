@@ -1,39 +1,20 @@
-let doc = {
+{
     "type": "doc",
     "content": [
         {
             "type": "heading",
             "attrs": {
-                "textAlign": "center",
-                "level": 2,
-                "class": "Heading1 ExtraClass"
-            },
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Hey there 👋"
-                }
-            ]
+                "textAlign": "left",
+                "level": 1,
+                "class": "NoHeading"
+            }
         },
         {
             "type": "heading",
             "attrs": {
-                "textAlign": "center",
+                "textAlign": "left",
                 "level": 1,
                 "class": "NoHeading"
-            },
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Hey there 👋"
-                }
-            ]
-        },
-        {
-            "type": "paragraph",
-            "attrs": {
-                "textAlign": "left",
-                "class": "Paragraph"
             },
             "content": [
                 {
@@ -181,7 +162,10 @@ let doc = {
             ]
         },
         {
-            "type": "bulletList",
+            "type": "orderedList",
+            "attrs": {
+                "start": 1
+            },
             "content": [
                 {
                     "type": "listItem",
@@ -624,7 +608,7 @@ let doc = {
                     "content": [
                         {
                             "type": "text",
-                            "text": "Wow, that’s amazing. Good work! 👏 "
+                            "text": "Wow, that’s amazing. Good "
                         },
                         {
                             "type": "hardBreak"
@@ -652,11 +636,3 @@ let doc = {
         }
     ]
 }
-
-function converter(contents) {
-    return contents.map(content => {
-        const { type, content: c, text } = content;
-        return `<${type}>${c != undefined ? converter(c) : text}<${type}/>`
-    }).join('');
-}
-console.log(`<doc>${converter(doc.content)}</doc>`);

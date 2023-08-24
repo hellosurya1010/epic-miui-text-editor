@@ -4,6 +4,7 @@ import { Node } from "@tiptap/core";
 import { store } from "../../../../store/app";
 import { saveFailure, saveSuccess, startSaving } from "../../../../store/fileSaveSlice";
 import * as laravel from '../../../../utils/laravel';
+import { Extension } from '@tiptap/core';
 
 
 declare module '@tiptap/core' {
@@ -14,7 +15,7 @@ declare module '@tiptap/core' {
     }
 }
 
-export const FileSave = Node.create({
+export const FileSave = Extension.create({
     name: 'fileSave',
     addCommands() {
         return {
