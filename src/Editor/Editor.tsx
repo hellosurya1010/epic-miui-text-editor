@@ -1,27 +1,19 @@
-import { Lock, LockOpen, TextFields } from "@mui/icons-material";
+import { FormatBold, Lock, LockOpen, TextFields } from "@mui/icons-material";
 import { Box, Button, Grid, LinearProgress, Stack, Typography, colors } from "@mui/material";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor } from "@tiptap/react";
 import {
   LinkBubbleMenu,
-  MenuButton,
-  RichTextEditor,
-  RichTextReadOnly,
   TableBubbleMenu,
   type RichTextEditorRef,
   RichTextEditorProvider,
   RichTextField,
-  useRichTextEditorContext,
 } from "mui-tiptap";
 // import EditorMenuControls from "./EditorMenuControls";
 import useExtensions from "./useExtensions";
 import Navbar from "./UI/Section/Navbar";
-import { Editor as EditorType } from "@tiptap/core";
-import { EditorContextType, useEdtiorContext } from "./Context/EditorContext";
 import './editor-styles.css'
-import { MenuButtonTrackChangesToggler } from "./UI/Section/controls/TrackChanges/MenuButtonTrackChanges";
 import { content } from "./content";
-import SaveIcon from '@mui/icons-material/Save';
 
 export default function Editor() {
   const extensions = useExtensions({
@@ -54,12 +46,6 @@ export default function Editor() {
       <Grid style={{ position: 'fixed', top: 0, zIndex: 1000 }} container boxShadow={'initial'} spacing={2}>
         <Grid item xs={12}>
           <Navbar />
-          <Button onClick={() => editor?.chain().undo().run()} style={{color: colors.grey['700']}} size="small" variant="text"><SaveIcon fontSize="small"/></Button>
-          {/* {true && <LinearProgress style={{ height: '2px', position: 'relative' }} color="info" />} */}
-          {/* <Button size="small" variant="text" onClick={() => {
-            editor?.chain().focus().toggleTrackChangeStatus().run();
-          }}>Click</Button>
-          <MenuButtonTrackChangesToggler/> */}
         </Grid>
       </Grid>
 
