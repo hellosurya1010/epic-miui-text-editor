@@ -1,4 +1,4 @@
-import axios  from 'axios';
+import axios from 'axios';
 import { Editor } from "@tiptap/core";
 import { Node } from "@tiptap/core";
 import { store } from "../../../../store/app";
@@ -22,6 +22,12 @@ export const FileSave = Extension.create({
             saveFile: () => ({ editor }) => {
                 return fileSave(editor);
             },
+        }
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-s': () => fileSave(this.editor),
+            'Mod-S': () => fileSave(this.editor),
         }
     },
 })

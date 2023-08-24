@@ -17,6 +17,7 @@ import { useEdtiorContext } from '../../Context/EditorContext';
 import { Button, Container, Divider, Grid, Paper, colors } from '@mui/material';
 import FileButton from './controls/FileSaveButton/FileSaveButton';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
+import { BoldButton } from './cutom-tool-buttons/buttons';
 
 
 interface TabPanelProps {
@@ -56,10 +57,6 @@ const HomeTabMenus = () => {
   return (
     <>
       <FileSaveButton />
-      <button onClick={() => {
-        console.log('hello');
-        
-      }}>hello</button>
       <MenuDivider />
       <MenuSelectFontFamily
         options={[
@@ -158,15 +155,6 @@ export default function Navbar() {
     setValue(newValue);
   };
 
-  type WrapperType = {
-    children: React.ReactNode,
-    value: number,
-  }
-
-  const Wrapper: React.FC<WrapperType> = (props) => {
-    return (
-      props.value == value ? <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>{props.children}</div> : <></>);
-  }
 
   const TabButton = (props: { label: string, index: number }) => {
     const style = {
@@ -191,12 +179,8 @@ export default function Navbar() {
           <TabButton index={2} label='Insert' />
         </div>
         <MenuControlsContainer>
-          <Wrapper value={1}>
-            <HomeTabMenus />
-          </Wrapper>
-          <Wrapper value={2}>
-            <InsertTabMenus />
-          </Wrapper>
+            {value == 1 && <HomeTabMenus />}
+            {value == 2 && <InsertTabMenus />}
         </MenuControlsContainer>
       </Paper>
     </>
