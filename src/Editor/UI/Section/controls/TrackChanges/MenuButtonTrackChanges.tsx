@@ -27,8 +27,8 @@ export function MenuButtonTrackChangesToggler(props: MenuButtonTrackChangesProps
     <MenuButton
       tooltipLabel={`${enabled ? "Disable" : "Enable"} track changes`}
       IconComponent={(props) => <TrackChangesIcon color={`${enabled ? "error" : "success"}`} {...props} />}
-      disabled={enabled}
-      selected={enabled}
+      // disabled={enabled}
+      // selected={enabled}
       onClick={() => {
         // setStatus((pre: Status) => ({...pre, isToggling: true}));
         console.log(enabled);

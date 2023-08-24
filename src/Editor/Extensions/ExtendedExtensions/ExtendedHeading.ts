@@ -3,6 +3,7 @@ import { mergeAttributes, NodeConfig } from "@tiptap/core";
 import Heading from "@tiptap/extension-heading";
 import { object } from "prop-types";
 import { addNodeAttributes } from "../../Services/attributes";
+import { Editor } from '@tiptap/react';
 
 const HeadingClasses = Array.from({ length: 6 }, (_, i) => `Heading${i + 1}`);
 
@@ -25,7 +26,7 @@ export const CustomHeading = Heading.extend({
                     // const headingLevel = HeadingClasses.find(headingLevel => node.classList.contains(headingLevel));
                     return [...node.classList].join(' ');
                 },
-                renderHTML: (attrs) => {
+                renderHTML: (attrs: any) => {
                     // console.log(attrs.class.contains(`${Heading}${attrs.level}`));
                     return attrs;
                 }
@@ -44,7 +45,7 @@ export const CustomHeading = Heading.extend({
     addCommands() {
         return {
             ...this.parent?.(),
-            setParaStyle: () => ({ editor }) => {
+            setParaStyle: () => ({ editor }: {editor: Editor}) => {
                 // console.log(editor.state.selection);
                 return true;
             },

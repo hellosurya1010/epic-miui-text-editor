@@ -1,23 +1,14 @@
 import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 // import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuDivider, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
-import { Editor } from '@tiptap/react';
 import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
-import { MenuDivider, MenuSelectFontSize, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
+import { MenuDivider, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import { useEdtiorContext } from '../../Context/EditorContext';
-import { Button, Container, Divider, Grid, Paper, colors } from '@mui/material';
-import FileButton from './controls/FileSaveButton/FileSaveButton';
+import { Button, Paper, colors } from '@mui/material';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
-import { BoldButton } from './cutom-tool-buttons/buttons';
 
 
 interface TabPanelProps {
@@ -56,6 +47,9 @@ function a11yProps(index: number) {
 const HomeTabMenus = () => {
   return (
     <>
+      <MenuButtonUndo />
+      <MenuButtonRedo />
+      <MenuDivider />
       <FileSaveButton />
       <MenuDivider />
       <MenuSelectFontFamily
@@ -133,8 +127,6 @@ const InsertTabMenus = () => {
       <MenuDivider />
       <MenuButtonRemoveFormatting />
       <MenuDivider />
-      <MenuButtonUndo />
-      <MenuButtonRedo />
       <MenuDivider />
       <MenuButtonTrackChangesToggler />
       <MenuButtonAcceptChanges />
@@ -179,8 +171,8 @@ export default function Navbar() {
           <TabButton index={2} label='Insert' />
         </div>
         <MenuControlsContainer>
-            {value == 1 && <HomeTabMenus />}
-            {value == 2 && <InsertTabMenus />}
+          {value == 1 && <HomeTabMenus />}
+          {value == 2 && <InsertTabMenus />}
         </MenuControlsContainer>
       </Paper>
     </>

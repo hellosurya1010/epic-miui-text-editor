@@ -35,8 +35,10 @@ export default function MenuButtonMathEditor(props: MathEditorButtonProps) {
     await convertButton?.click();
     let imageEl: HTMLImageElement | null = iframeDocument.querySelector('#MathImage');
     // let mathMlSrc: string | null = iframeDocument.querySelector('#editor-content')?.innerHTML.replaceAll('>', '»').replaceAll('<', '«');
-    if(imageEl == null) return;
+    if(!imageEl?.src) return;
     editor?.chain().focus().setImage({ src: imageEl?.src }).run();
+    imageEl.src = "";
+    console.log(imageEl?.src);
     setOpen(false);
   }
 

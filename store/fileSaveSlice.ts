@@ -22,22 +22,21 @@ const fileSaveSlice = createSlice({
     name: 'fileSave', // Slice name
     initialState,
     reducers: {
-        setContent: (state, action: PayloadAction<Editor>) => {
-            console.log(state.isSaving);
+        setContent: (state: FileSaveState, action: PayloadAction<Editor>) => {
             const editor = action.payload;
             // store.dispatch(startSaving());
             // store.dispatch(saveSuccess());
             
         },
-        startSaving: (state) => {
+        startSaving: (state: FileSaveState) => {
             state.isSaving = true;
             state.error = null;
         },
-        saveSuccess: (state) => {
+        saveSuccess: (state: FileSaveState) => {
             state.isSaving = false;
             state.error = null;
         },
-        saveFailure: (state, action: PayloadAction<string>) => {
+        saveFailure: (state: FileSaveState, action: PayloadAction<string>) => {
             state.isSaving = false;
             state.error = action.payload;
         },

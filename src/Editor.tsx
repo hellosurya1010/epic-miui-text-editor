@@ -12,10 +12,12 @@ import {
   useMediaQuery,
   type PaletteMode,
 } from "@mui/material";
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import EditorView from "./Editor/Editor";
 import { ProgressbarProvider } from "./Editor/Context/ProgressbarContext";
-
+import { store } from "../store/app";
+import * as laravel from '../utils/laravel';
+import axios from "axios";
 
 
 
@@ -31,6 +33,22 @@ export default function Editor() {
       setPaletteMode((prevMode) => (prevMode === "light" ? "dark" : "light")),
     []
   );
+
+  const [doc, setDoc] = useState({ set: false, content: '' });
+
+  useEffect(() => {
+    try {
+      const { fileSave } = store.getState();
+      axios.get(`${laravel.url}/get-document-content/123456`)
+        .then(res => {
+          setDoc(pre => ({...pre, content: res.data.data.wordDocument, set: true}));
+        }).catch(err => {
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
   const theme = useMemo(
     () =>
       createTheme({
@@ -47,7 +65,7 @@ export default function Editor() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <EditorView />
+      {doc.set && <EditorView content={doc.content}/>}
     </ThemeProvider>
   );
 }

@@ -33,18 +33,14 @@ import { useMemo } from "react";
 import {
   FontSize,
   HeadingWithAnchor,
-  LinkBubbleMenuHandler,
-  ResizableImage,
-  TableImproved,
+  LinkBubbleMenuHandler, TableImproved
 } from "mui-tiptap";
 import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
-import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
-import { CustomHeading } from "./Extensions/ExtendedExtensions/ExtendedHeading";
-import './Extensions/ExtendedExtensions/ExtendedStyles.css'
+import './Extensions/ExtendedExtensions/ExtendedStyles.css';
 import { FileSave } from "./Extensions/FileSave/FileSave";
-import { ExtendedItalic } from "./Extensions/ExtendedExtensions/ExtendedItalic";
-import { SpanRetain, getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
+import { getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
 import { Footnote } from "./Extensions/Footnote/Footnote";
+import Image from "@tiptap/extension-image";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -136,7 +132,7 @@ export default function useExtensions({
       Bold,
       Blockquote,
       Code,
-      // Italic,
+      Italic,
       Underline,
       Strike,
       CustomLinkExtension.configure({
@@ -155,7 +151,7 @@ export default function useExtensions({
 
       // Extensions
       Gapcursor,
-      // HeadingWithAnchor,
+      HeadingWithAnchor,
       TextAlign.configure({
         types: ["heading", "paragraph", "image"],
       }),
@@ -164,7 +160,8 @@ export default function useExtensions({
       FontSize,
       HorizontalRule,
 
-      ResizableImage,
+      Image,
+      // ResizableImage,
       // When images are dragged, we want to show the "drop cursor" for where they'll
       // land
       Dropcursor,
@@ -183,18 +180,17 @@ export default function useExtensions({
       History,
 
       TrackChangeExtension.configure({
-        enabled: false,
+        enabled: true,
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
         }
       }),
 
       // CustomParagraph,
-      CustomHeading,
+      // CustomHeading,
       FileSave,
       Footnote,
 
-      ExtendedItalic,
       // SpanRetain,
       ...getWordTagsMark(),
     ];

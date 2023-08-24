@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     height: 8px !important;
     width: 8px !important;
     border-radius: 10px;
@@ -20,4 +20,4 @@
 .ProseMirror{
     border: none !important;
     min-height: 1000px;
-}
+} */

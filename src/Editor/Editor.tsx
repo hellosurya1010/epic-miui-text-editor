@@ -13,9 +13,9 @@ import {
 import useExtensions from "./useExtensions";
 import Navbar from "./UI/Section/Navbar";
 import './editor-styles.css'
-import { content } from "./content";
+// import { content } from "./content";
 
-export default function Editor() {
+export default function Editor({content}: {content: string}) {
   const extensions = useExtensions({
     placeholder: "Add your own content here...",
   });

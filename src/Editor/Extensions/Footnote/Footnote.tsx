@@ -45,8 +45,8 @@ export const Footnote = Mark.create<FootnoteOptions>({
     return {
       title: {
         default: null,
-        parseHTML: (el) => (el as HTMLSpanElement).getAttribute('title'),
-        renderHTML: (attrs) => ({ 'title': attrs.title }),
+        parseHTML: (el: HTMLSpanElement) => (el as HTMLSpanElement).getAttribute('title'),
+        renderHTML: (attrs: {title: string}) => ({ 'title': attrs.title }),
       },
     };
   },
@@ -67,7 +67,7 @@ export const Footnote = Mark.create<FootnoteOptions>({
 
   addCommands() {
     return {
-      setFootnote: () => (props) => {
+      setFootnote: () => (props: any) => {
         const { commands, state, chain } = props;
         const { from, to } = state.selection;
         this.storage.count += 1;
@@ -90,10 +90,10 @@ export const Footnote = Mark.create<FootnoteOptions>({
           .run();
 
       },
-      toggleFootnote: () => ({ commands }) => {
+      toggleFootnote: () => ({ commands }: any) => {
         return commands.toggleMark('footnote')
       },
-      unsetFootnote: () => ({ commands }) => {
+      unsetFootnote: () => ({ commands }: any) => {
         return commands.unsetMark('footnote')
       },
     };

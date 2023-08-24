@@ -19,7 +19,7 @@ export const FileSave = Extension.create({
     name: 'fileSave',
     addCommands() {
         return {
-            saveFile: () => ({ editor }) => {
+            saveFile: () => ({ editor }: {editor: Editor}) => {
                 return fileSave(editor);
             },
         }
