@@ -13,9 +13,12 @@ import {
 import useExtensions from "./useExtensions";
 import Navbar from "./UI/Section/Navbar";
 import './editor-styles.css'
+import { Editor as EditorType } from "@tiptap/core";
 // import { content } from "./content";
 
-export default function Editor({content}: {content: string}) {
+
+
+export default function Editor({ content }: { content: string }) {
   const extensions = useExtensions({
     placeholder: "Add your own content here...",
   });

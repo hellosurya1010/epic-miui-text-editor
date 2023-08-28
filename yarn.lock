@@ -1507,13 +1507,14 @@ ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mui-tiptap@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/mui-tiptap/-/mui-tiptap-1.3.0.tgz"
-  integrity sha512-uFUEmoiC3DVPXGe6THuJBA4PoMAir+vKomFa2zlewW7x3/6yz+kWK6/+KW9YKqYpLMTBebi7fmYJsip/p954Kw==
+mui-tiptap@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/mui-tiptap/-/mui-tiptap-1.5.1.tgz"
+  integrity sha512-QjQGZEUDD2yz7LGEAsjMQS709/kOdkhypyGeWggTNhymNBH9mh5e+VT8dlrRHNUCJqBowHOQs4ioAYYikMQ2/Q==
   dependencies:
     encodeurl "^1.0.2"
     lodash "^4.17.21"
+    react-colorful "^5.6.1"
     tss-react "^4.8.3"
     type-fest "^3.12.0"
 
@@ -1765,6 +1766,11 @@ proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
+
+react-colorful@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.npmjs.org/react-colorful/-/react-colorful-5.6.1.tgz"
+  integrity sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==
 
 react-dom@^18.2.0:
   version "18.2.0"

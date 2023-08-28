@@ -33,7 +33,7 @@ import { useMemo } from "react";
 import {
   FontSize,
   HeadingWithAnchor,
-  LinkBubbleMenuHandler, TableImproved
+  LinkBubbleMenuHandler, ResizableImage, TableImproved
 } from "mui-tiptap";
 import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
 import './Extensions/ExtendedExtensions/ExtendedStyles.css';
@@ -160,8 +160,8 @@ export default function useExtensions({
       FontSize,
       HorizontalRule,
 
-      Image,
-      // ResizableImage,
+      // Image,
+      ResizableImage,
       // When images are dragged, we want to show the "drop cursor" for where they'll
       // land
       Dropcursor,

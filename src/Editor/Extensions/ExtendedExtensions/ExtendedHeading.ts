@@ -44,9 +44,9 @@ export const CustomHeading = Heading.extend({
     },
     addCommands() {
         return {
-            ...this.parent?.(),
-            setParaStyle: () => ({ editor }: {editor: Editor}) => {
-                // console.log(editor.state.selection);
+            // ...this.parent?.(),
+            setParaStyle: () => ({ editor }) => {
+                console.log(editor.state.selection);
                 return true;
             },
         }
