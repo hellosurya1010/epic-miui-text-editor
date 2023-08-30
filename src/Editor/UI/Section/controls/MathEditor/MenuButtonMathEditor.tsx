@@ -8,6 +8,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import MenuButton, { MenuButtonProps } from '../MenuButton';
 import { useRichTextEditorContext } from 'mui-tiptap';
 import FunctionsIcon from '@mui/icons-material/Functions';
+import { MathNodeName } from '../../../../Extensions/Nodes/MathNode/MathNode';
+import { ResizableImageOptions } from 'mui-tiptap/dist/extensions/ResizableImage';
 
 export type MathEditorButtonProps = Partial<MenuButtonProps>;
 
@@ -20,6 +22,43 @@ export default function MenuButtonMathEditor(props: MathEditorButtonProps) {
     setOpen(true);
   };
 
+  React.useEffect(() => {
+
+    const iframe = mathEditorRef.current;
+
+    const handleIframeLoad = () => {
+      console.log('hello');
+      if (editor) {
+        const node = editor.state.selection.node;
+        console.log(node);
+        if (node && node.type.name == MathNodeName) {
+          const selectedEquation = node.attrs.mathml.replaceAll('»', '>').replaceAll('«', '<');
+          const iframeDocument = mathEditorRef.current?.contentDocument || mathEditorRef.current?.contentWindow?.document;
+          console.log(selectedEquation, iframeDocument);
+          if (iframeDocument == null) {
+            // iframeDocument.querySelector('#editor-content').innerHTML = selectedEquation;
+          }
+          // const elementInIframe = iframeDocument.querySelector('.output');
+          // const convertButton: HTMLButtonElement | null = iframeDocument.querySelector('#convertButton');
+          // await convertButton?.click();
+          // let imageEl: HTMLImageElement | null = iframeDocument.querySelector('#MathImage');
+          // if (!imageEl?.src) return;
+          // let mathMlSrc: string | null = iframeDocument.querySelector('#editor-content')?.innerHTML.replaceAll('>', '»').replaceAll('<', '«');
+        }
+      }
+    };
+
+    if (iframe) {
+      iframe.addEventListener('load', handleIframeLoad);
+
+      return () => {
+        iframe.removeEventListener('load', handleIframeLoad);
+      };
+    }
+  }, [mathEditorRef.current]);
+  console.log();
+
+
   const editorUrl = `${window.location.origin}/public/math_html/`
 
   const handleClose = () => {
@@ -29,14 +68,20 @@ export default function MenuButtonMathEditor(props: MathEditorButtonProps) {
   const handleMathInsert = async () => {
     console.log(mathEditorRef.current);
     const iframeDocument = mathEditorRef.current?.contentDocument || mathEditorRef.current?.contentWindow?.document;
-    if(iframeDocument == null)return;
+    if (iframeDocument == null) return;
     const elementInIframe = iframeDocument.querySelector('.output');
     const convertButton: HTMLButtonElement | null = iframeDocument.querySelector('#convertButton');
     await convertButton?.click();
     let imageEl: HTMLImageElement | null = iframeDocument.querySelector('#MathImage');
-    // let mathMlSrc: string | null = iframeDocument.querySelector('#editor-content')?.innerHTML.replaceAll('>', '»').replaceAll('<', '«');
-    if(!imageEl?.src) return;
-    editor?.chain().focus().setImage({ src: imageEl?.src }).run();
+    if (!imageEl?.src) return;
+    let mathMlSrc: string | null = iframeDocument.querySelector('#editor-content')?.innerHTML.replaceAll('>', '»').replaceAll('<', '«');
+    editor?.commands.insertContent({
+      type: 'image', attrs: {
+        src: imageEl.src,
+        mathml: mathMlSrc,
+      }
+    });
+    // editor?.chain().focus().setImage({ src: imageEl?.src }).run();
     imageEl.src = "";
     console.log(imageEl?.src);
     setOpen(false);

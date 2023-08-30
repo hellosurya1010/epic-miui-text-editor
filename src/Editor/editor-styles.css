@@ -1,3 +1,7 @@
+.MuiTiptap-RichTextField-content.css-E2Alw3-RichTextField-menuBarContent-ref.css-1mgjdoc-MenuBar-content-RichTextField-menuBarContent {
+    padding: 0;
+}
+
 ::-webkit-scrollbar {
     height: 8px !important;
     width: 8px !important;
@@ -17,7 +21,7 @@
     background-color: #757575;
 }
 
-.ProseMirror{
+.ProseMirror {
     border: none !important;
     min-height: 1000px;
 }

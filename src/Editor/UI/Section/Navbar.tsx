@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-// import { MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonEditLink, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUnindent, MenuDivider, MenuSelectFontFamily, MenuSelectFontSize, MenuSelectHeading, MenuSelectTextAlign, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
-import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+// import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign, TableBubbleMenu } from 'mui-tiptap';
 import { MenuDivider, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
-import { Button, Paper, colors } from '@mui/material';
+import { Button, Paper, Theme, colors } from '@mui/material';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
+import { useTheme } from '@emotion/react';
 
 
 interface TabPanelProps {
@@ -44,7 +45,7 @@ function a11yProps(index: number) {
   };
 }
 
-const HomeTabMenus = () => {
+const HomeTabMenus = ({theme}: {theme: Theme}) => {
   return (
     <>
       <MenuButtonUndo />
@@ -82,12 +83,44 @@ const HomeTabMenus = () => {
       <MenuButtonSuperscript />
       <MenuDivider />
       <MenuButtonEditLink />
+      <LinkBubbleMenu />
       <MenuDivider />
       <MenuSelectTextAlign />
       <MenuDivider />
       <MenuButtonOrderedList />
       <MenuButtonBulletedList />
       <MenuButtonTaskList />
+
+
+      <MenuButtonTextColor
+        defaultTextColor={theme.palette.text.primary}
+        swatchColors={[
+          { value: "#000000", label: "Black" },
+          { value: "#ffffff", label: "White" },
+          { value: "#888888", label: "Grey" },
+          { value: "#ff0000", label: "Red" },
+          { value: "#ff9900", label: "Orange" },
+          { value: "#ffff00", label: "Yellow" },
+          { value: "#00d000", label: "Green" },
+          { value: "#0000ff", label: "Blue" },
+        ]}
+      />
+
+      <MenuButtonHighlightColor
+        swatchColors={[
+          { value: "#595959", label: "Dark grey" },
+          { value: "#dddddd", label: "Light grey" },
+          { value: "#ffa6a6", label: "Light red" },
+          { value: "#ffd699", label: "Light orange" },
+          // Plain yellow matches the browser default `mark` like when using Cmd+Shift+H
+          { value: "#ffff00", label: "Yellow" },
+          { value: "#99cc99", label: "Light green" },
+          { value: "#90c6ff", label: "Light blue" },
+          { value: "#8085e9", label: "Light purple" },
+        ]}
+      />
+
+
       {/* On touch devices, we'll show indent/unindent buttons, since they're
       unlikely to have a keyboard that will allow for using Tab/Shift+Tab. These
       buttons probably aren't necessary for keyboard users and would add extra
@@ -123,7 +156,10 @@ const InsertTabMenus = () => {
       />
       <MenuDivider />
       <MenuButtonHorizontalRule />
+
       <MenuButtonAddTable />
+      <TableBubbleMenu />
+
       <MenuDivider />
       <MenuButtonRemoveFormatting />
       <MenuDivider />
@@ -147,6 +183,8 @@ export default function Navbar() {
     setValue(newValue);
   };
 
+  const theme = useTheme();
+
 
   const TabButton = (props: { label: string, index: number }) => {
     const style = {
@@ -165,13 +203,13 @@ export default function Navbar() {
 
   return (
     <>
-      <Paper elevation={4} sx={{ width: '100%' }} style={{ background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important', padding: '0 15px' }}>
+      <Paper elevation={4} sx={{ width: '100%' }} style={{ background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important', padding: '0 15px', position: 'fixed', top: 0, left: 0 }}>
         <div style={{ display: 'flex', gap: '10px' }}>
           <TabButton index={1} label='Home' />
           <TabButton index={2} label='Insert' />
         </div>
         <MenuControlsContainer>
-          {value == 1 && <HomeTabMenus />}
+          {value == 1 && <HomeTabMenus theme={theme} />}
           {value == 2 && <InsertTabMenus />}
         </MenuControlsContainer>
       </Paper>

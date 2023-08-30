@@ -687,6 +687,11 @@
   resolved "https://registry.npmjs.org/@tiptap/extension-code/-/extension-code-2.0.3.tgz"
   integrity sha512-LsVCKVxgBtkstAr1FjxN8T3OjlC76a2X8ouoZpELMp+aXbjqyanCKzt+sjjUhE4H0yLFd4v+5v6UFoCv4EILiw==
 
+"@tiptap/extension-color@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.npmjs.org/@tiptap/extension-color/-/extension-color-2.1.7.tgz"
+  integrity sha512-NLspH5taSpZP60rXJjDKu8AP9VDd+dlqz4guxvijtuPEePw87Fzidxx9w6X0uYQfx1O0xdPFq3UodlDz591scA==
+
 "@tiptap/extension-document@^2.1.6":
   version "2.1.6"
   resolved "https://registry.npmjs.org/@tiptap/extension-document/-/extension-document-2.1.6.tgz"
@@ -748,6 +753,11 @@
   version "2.0.3"
   resolved "https://registry.npmjs.org/@tiptap/extension-heading/-/extension-heading-2.0.3.tgz"
   integrity sha512-f0IEv5ms6aCzL80WeZ1qLCXTkRVwbpRr1qAETjg3gG4eoJN18+lZNOJYpyZy3P92C5KwF2T3Av00eFyVLIbb8Q==
+
+"@tiptap/extension-highlight@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.npmjs.org/@tiptap/extension-highlight/-/extension-highlight-2.1.7.tgz"
+  integrity sha512-3EXrnf1BQSdOe/iqzcTIr5Tf0NOhPQ+y1B9nMi/40v3MD8WzRBLaqj0lvpwO7xMAdgxm6IiL/XFYU41n9yFl/Q==
 
 "@tiptap/extension-history@^2.1.6":
   version "2.1.6"

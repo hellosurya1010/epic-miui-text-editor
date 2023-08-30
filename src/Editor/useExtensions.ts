@@ -29,6 +29,8 @@ import { Text } from "@tiptap/extension-text";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Underline } from "@tiptap/extension-underline";
+import { Color } from "@tiptap/extension-color";
+import { Highlight } from "@tiptap/extension-highlight";
 import { useMemo } from "react";
 import {
   FontSize,
@@ -41,6 +43,7 @@ import { FileSave } from "./Extensions/FileSave/FileSave";
 import { getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
 import { Footnote } from "./Extensions/Footnote/Footnote";
 import Image from "@tiptap/extension-image";
+import { MathNode } from "./Extensions/Nodes/MathNode/MathNode";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -90,6 +93,14 @@ export default function useExtensions({
 }: UseExtensionsOptions = {}): EditorOptions["extensions"] {
   return useMemo(() => {
     return [
+
+      // Marks
+      TrackChangeExtension.configure({
+        enabled: true,
+        onStatusChange(status: boolean) {
+          // myTrackChangeEnabled = status
+        }
+      }),
       ...getWordTagsNode(),
       // We incorporate all of the functionality that's part of
       // https://tiptap.dev/api/extensions/starter-kit, plus a few additional
@@ -179,17 +190,16 @@ export default function useExtensions({
       // collaborative editing
       History,
 
-      TrackChangeExtension.configure({
-        enabled: true,
-        onStatusChange(status: boolean) {
-          // myTrackChangeEnabled = status
-        }
-      }),
-
       // CustomParagraph,
       // CustomHeading,
       FileSave,
       Footnote,
+
+      Color,
+      Highlight.configure({ multicolor: true }),
+
+      // Nodes
+      MathNode,
 
       // SpanRetain,
       ...getWordTagsMark(),
