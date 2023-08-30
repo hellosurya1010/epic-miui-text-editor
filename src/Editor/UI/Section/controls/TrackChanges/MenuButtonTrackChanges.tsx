@@ -8,7 +8,7 @@ import RemoveDoneIcon from '@mui/icons-material/RemoveDone';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from "react";
-import { EXTENSION_NAME } from '../../../../Extensions/TrackChanges/TrackChanges';
+import { EXTENSION_NAME } from '../../../../Extensions/Marks/TrackChanges/TrackChanges';
 
 
 export type MenuButtonTrackChangesProps = Partial<MenuButtonProps>;

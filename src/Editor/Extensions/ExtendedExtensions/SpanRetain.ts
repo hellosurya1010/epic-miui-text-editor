@@ -48,7 +48,6 @@ export const getWordTagsMark = () => {
             },
 
             renderHTML({ mark, HTMLAttributes }) {
-                console.log(mark);
                 return [tag.replace('\\', ''), mergeAttributes(this.options.HTMLAttributes, removeEmptyAttributes(HTMLAttributes)), 0]
             },
         });

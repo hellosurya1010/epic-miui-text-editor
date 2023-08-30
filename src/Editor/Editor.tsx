@@ -37,18 +37,17 @@ export default function Editor({ content }: { content: string }) {
     window.editor = editor;
   }, [editor]);
 
-  const TableFlotingButtons = () => {
-    return (<>
-      <LinkBubbleMenu />
-      <TableBubbleMenu />
-    </>)
-  };
+  // const TableFlotingButtons = () => {
+  //   return (<>
+  //     <LinkBubbleMenu />
+  //     <TableBubbleMenu />
+  //   </>)
+  // };
 
   return (
     <RichTextEditorProvider editor={editor}>
       <Grid style={{ position: 'fixed', top: 0, zIndex: 1000 }} container boxShadow={'initial'} spacing={2}>
         <Grid item xs={12}>
-          <Navbar />
         </Grid>
       </Grid>
 
@@ -72,8 +71,8 @@ export default function Editor({ content }: { content: string }) {
               margin: "0 auto",
             }}
           >
-            <RichTextField />
-            <TableFlotingButtons />
+            <RichTextField controls={<Navbar />} />
+            {/* <TableFlotingButtons /> */}
             {/* <RichTextEditor
               ref={rteRef}
               extensions={extensions}

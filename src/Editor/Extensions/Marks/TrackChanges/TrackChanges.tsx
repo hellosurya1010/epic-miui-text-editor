@@ -266,7 +266,7 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
   },
   // @ts-ignore
   onTransaction: (props: { editor: Editor; transaction: Transaction }) => {
-    const { transaction, editor } = props
+    const { transaction, editor } = props    
     // chinese input status check
     const isChineseStart = isStartChineseInput && composingStatus === IME_STATUS_CONTINUE
     const isChineseInputting = !isStartChineseInput && composingStatus === IME_STATUS_CONTINUE
@@ -295,7 +295,7 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
       return
     }
     // check if this tr was applied to editor: vue2 and vue3 have different result
-    const isThisTrApplied = transaction.before !== editor.state.tr.doc
+    const isThisTrApplied =   transaction.before !== editor.state.tr.doc
     const thisExtension = getSelfExt(editor)
     const trackChangeEnabled = thisExtension.options.enabled
     LOG_ENABLED && console.warn('内容变化，执行跟踪修订相关逻辑', transaction.steps.length, transaction)

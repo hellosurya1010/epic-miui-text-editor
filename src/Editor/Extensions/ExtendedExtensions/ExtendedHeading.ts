@@ -27,7 +27,6 @@ export const CustomHeading = Heading.extend({
                     return [...node.classList].join(' ');
                 },
                 renderHTML: (attrs: any) => {
-                    // console.log(attrs.class.contains(`${Heading}${attrs.level}`));
                     return attrs;
                 }
             },
@@ -35,7 +34,6 @@ export const CustomHeading = Heading.extend({
         }
     },
     renderHTML({ node, HTMLAttributes }) {
-        // console.log(HTMLAttributes);
         const hasLevel = this.options.levels.includes(node.attrs.level)
         const level = hasLevel
             ? node.attrs.level
@@ -46,7 +44,6 @@ export const CustomHeading = Heading.extend({
         return {
             // ...this.parent?.(),
             setParaStyle: () => ({ editor }) => {
-                console.log(editor.state.selection);
                 return true;
             },
         }
