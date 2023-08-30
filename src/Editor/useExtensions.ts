@@ -37,11 +37,11 @@ import {
   HeadingWithAnchor,
   LinkBubbleMenuHandler, ResizableImage, TableImproved
 } from "mui-tiptap";
-import TrackChangeExtension from "./Extensions/TrackChanges/TrackChanges";
+import TrackChangeExtension from "./Extensions/Marks/TrackChanges/TrackChanges";
 import './Extensions/ExtendedExtensions/ExtendedStyles.css';
-import { FileSave } from "./Extensions/FileSave/FileSave";
+import { FileSave } from "./Extensions/Extensions/FileSave/FileSave";
 import { getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
-import { Footnote } from "./Extensions/Footnote/Footnote";
+import { Footnote } from "./Extensions/Nodes/Footnote/Footnote";
 import Image from "@tiptap/extension-image";
 import { MathNode } from "./Extensions/Nodes/MathNode/MathNode";
 
