@@ -1,19 +1,19 @@
 import { FormatBold, Lock, LockOpen, TextFields } from "@mui/icons-material";
 import { Box, Button, Grid, LinearProgress, Stack, Typography, colors } from "@mui/material";
-import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor } from "@tiptap/react";
 import {
   LinkBubbleMenu,
-  TableBubbleMenu,
-  type RichTextEditorRef,
   RichTextEditorProvider,
   RichTextField,
+  TableBubbleMenu,
+  type RichTextEditorRef,
 } from "mui-tiptap";
+import { useEffect, useMemo, useRef, useState } from "react";
 // import EditorMenuControls from "./EditorMenuControls";
-import useExtensions from "./useExtensions";
-import Navbar from "./UI/Section/Navbar";
-import './editor-styles.css'
 import { Editor as EditorType } from "@tiptap/core";
+import Navbar from "./UI/Section/Navbar";
+import './editor-styles.css';
+import useExtensions from "./useExtensions";
 // import { content } from "./content";
 
 
