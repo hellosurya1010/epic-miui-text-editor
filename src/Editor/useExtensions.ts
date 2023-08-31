@@ -41,9 +41,10 @@ import TrackChangeExtension from "./Extensions/Marks/TrackChanges/TrackChanges";
 import './Extensions/ExtendedExtensions/ExtendedStyles.css';
 import { FileSave } from "./Extensions/Extensions/FileSave/FileSave";
 import { getWordTagsMark, getWordTagsNode } from "./Extensions/ExtendedExtensions/SpanRetain";
-import { Footnote } from "./Extensions/Nodes/Footnote/Footnote";
+import { Footnote } from "./Extensions/Marks/Footnote/Footnote";
 import Image from "@tiptap/extension-image";
 import { MathNode } from "./Extensions/Nodes/MathNode/MathNode";
+import { FindAndReplace } from "./Extensions/Extensions/FindAndReplace/FindAndReplace";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -193,6 +194,7 @@ export default function useExtensions({
       // CustomParagraph,
       // CustomHeading,
       FileSave,
+      FindAndReplace,
       Footnote,
 
       Color,
