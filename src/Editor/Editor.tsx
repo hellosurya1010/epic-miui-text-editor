@@ -14,6 +14,7 @@ import { Editor as EditorType } from "@tiptap/core";
 import Navbar from "./UI/Section/Navbar";
 import './editor-styles.css';
 import useExtensions from "./useExtensions";
+import { RightSidebar } from "./UI/Section/RightSidebar";
 // import { content } from "./content";
 
 
@@ -51,8 +52,10 @@ export default function Editor({ content }: { content: string }) {
         </Grid>
       </Grid>
 
-      <Grid style={{ background: 'linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%)', marginTop: '61px' }} container>
-        <Grid item xs={2}></Grid>
+      <Grid id="main" style={{ background: 'linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%)', marginTop: '61px' }} container>
+        <Grid item xs={2}>
+          <RightSidebar/>
+        </Grid>
         <Grid item marginTop={'10px'} xs={8} >
           <Box
             bgcolor={colors.grey['A100']}
@@ -106,6 +109,11 @@ export default function Editor({ content }: { content: string }) {
         </Grid>
         <Grid item xs={2}></Grid>
       </Grid>
+      {/* <Grid>
+        <Grid item xs={12} style={{position: 'fixed', bottom: 0, backgroundColor: colors.blue['400'], width: '100%'}}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, recusandae. Minus, nostrum a veritatis tempore 
+        </Grid>
+      </Grid> */}
     </RichTextEditorProvider>
   );
 }
