@@ -71,7 +71,9 @@ export default function Editor({ content }: { content: string }) {
               margin: "0 auto",
             }}
           >
-            <RichTextField controls={<Navbar />} />
+            <RichTextField
+              controls={<Navbar />}
+            />
             {/* <TableFlotingButtons /> */}
             {/* <RichTextEditor
               ref={rteRef}
