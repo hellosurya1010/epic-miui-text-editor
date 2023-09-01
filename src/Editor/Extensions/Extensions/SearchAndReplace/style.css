@@ -1,0 +1,7 @@
+.search-result {
+    background-color: #ffff007e;
+}
+
+.search-result:hover, .active-search-result{
+    background-color: #ffff00;
+}

@@ -9,6 +9,7 @@ import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
+import MenuButtonFindAndReplace from '../../Extensions/Extensions/SearchAndReplace/MenuButtonFindAndReplace';
 
 
 interface TabPanelProps {
@@ -133,6 +134,7 @@ const HomeTabMenus = ({theme}: {theme: Theme}) => {
       <MenuDivider />
       <MenuButtonBlockquote />
       <MenuDivider />
+      <MenuButtonFindAndReplace />
     </>
   )
 }
