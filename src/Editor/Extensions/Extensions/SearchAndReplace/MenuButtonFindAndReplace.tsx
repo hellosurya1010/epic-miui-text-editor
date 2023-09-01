@@ -34,7 +34,6 @@ export default function MenuButtonFindAndReplace(props: MenuButtonBoldProps) {
         value={form[formName]}
         onChange={(e) => {
           const inputElement = e.target as HTMLInputElement;
-          console.log(inputElement.value);
           editor?.commands[commandName](inputElement.value);
           setFrom(pre => ({ ...pre, [formName]: inputElement.value }))
         }}
@@ -73,7 +72,6 @@ export default function MenuButtonFindAndReplace(props: MenuButtonBoldProps) {
         onClick={(event) => {
           setAnchorEl(event.target?.closest('button'));
           setOpen((prev) => !prev);
-          console.log(anchorEl);
         }}
         {...props}
       />
