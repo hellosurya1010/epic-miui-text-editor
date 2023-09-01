@@ -1,8 +1,19 @@
 .MuiTiptap-RichTextField-content.css-E2Alw3-RichTextField-menuBarContent-ref.css-1mgjdoc-MenuBar-content-RichTextField-menuBarContent {
     padding: 0;
 }
+#main{
+    height: 92vh;
+}
 
-::-webkit-scrollbar {
+/* body{
+    background: linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%) !important;
+} */
+.MuiTiptap-RichTextContent-root.MuiTiptap-RichTextField-content.css-E2Alw3-RichTextField-content-ref.MuiTiptap-RichTextContent-editable.MuiBox-root.css-o6cmr-RichTextField-content-RichTextContent-root-RichTextContent-editable{
+    height: 87vh;
+    overflow-y: scroll;
+}
+
+/* ::-webkit-scrollbar {
     height: 8px !important;
     width: 8px !important;
     border-radius: 10px;
@@ -19,7 +30,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: #757575;
-}
+} */
 
 .ProseMirror {
     border: none !important;
