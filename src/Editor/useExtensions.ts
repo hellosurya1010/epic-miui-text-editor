@@ -45,6 +45,8 @@ import { SearchAndReplace } from "./Extensions/Extensions/SearchAndReplace/Searc
 import { Footnote } from "./Extensions/Marks/Footnote/Footnote";
 import TrackChangeExtension from "./Extensions/Marks/TrackChanges/TrackChanges";
 import { MathNode } from "./Extensions/Nodes/MathNode/MathNode";
+import { TableOfContents } from "./Extensions/Extensions/TableOfContents/TableOfContents";
+import Heading from "@tiptap/extension-heading";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -97,8 +99,9 @@ export default function useExtensions({
 
       // Marks
       SearchAndReplace,
+      TableOfContents,
       TrackChangeExtension.configure({
-        enabled: true,
+        enabled: false,
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
         }
@@ -164,7 +167,8 @@ export default function useExtensions({
 
       // Extensions
       Gapcursor,
-      HeadingWithAnchor,
+      Heading,
+      // HeadingWithAnchor,
       TextAlign.configure({
         types: ["heading", "paragraph", "image"],
       }),

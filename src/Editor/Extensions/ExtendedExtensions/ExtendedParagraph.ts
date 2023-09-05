@@ -4,7 +4,7 @@ import { Editor, mergeAttributes } from "@tiptap/core";
 import axios from "axios";
 import { store } from "../../../../store/app";
 import { useDispatch } from "react-redux";
-import { saveFailure, saveSuccess, setContent, startSaving } from "../../../../store/fileSaveSlice";
+import { saveFailure, saveSuccess, startSaving } from "../../../../store/fileSaveSlice";
 import * as laravel from '../../../../utils/laravel'
 import { addNodeAttributes, removeEmptyAttributes } from "../../Services/attributes";
 

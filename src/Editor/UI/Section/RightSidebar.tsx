@@ -1,19 +1,50 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Grid } from "@mui/material";
+import { useRichTextEditorContext } from 'mui-tiptap';
+import { HeadingAttributresForTOC } from '../../Extensions/Extensions/TableOfContents/TableOfContents';
 
 
 export const RightSidebar = () => {
+  const editor = useRichTextEditorContext();
+  const headings: HeadingAttributresForTOC[] = editor?.storage.tableOfContents.headings ?? [];
+
+  const headingStyles = () => {
+    return [1, 2, 3, 4, 5, 6].reduce((acc, level) => {
+      const descLevel = Math.abs(6 - level) + 1;
+      const style: CSSProperties = {
+        fontWeight: 300 + (100 * descLevel),
+        display: 'block',
+        fontSize: `${10 + descLevel}px`,
+        color: '#000',
+        paddingLeft: `${(level - 1) * 10}px`,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      }
+      acc[level] = style;
+      return acc;
+    }, {});
+  }
+
+  const HeadingAnchor = ({ heading }: { heading: HeadingAttributresForTOC }) => {
+    const { node, id } = heading;
+    const { attrs: { level } } = node;
+    const styles = headingStyles();
+    return <a href={`/#${id}`} className='toc-active' style={styles[level]}>{heading.node.textContent}</a>
+  }
+
+
+
+
   return (
-    <Grid style={{padding: '10px'}}>
-        Table of contents
-        <Grid xs={12}>
-            <h1 style={{marginLeft: '5px'}}>heading 1</h1>
-            <h2 style={{marginLeft: '10px'}}>heading 2</h2>
-            <h3 style={{marginLeft: '15px'}}>heading 3</h3>
-            <h4 style={{marginLeft: '20px'}}>heading 4</h4>
-            <h5 style={{marginLeft: '25px'}}>heading 5</h5>
-            <h6 style={{marginLeft: '30px'}}>heading 6</h6>
-        </Grid>
-    </Grid>
+    <div style={{ padding: '10px' }}>
+      <h4 style={{ textAlign: 'center', margin: '14px 0' }}>Table of contents</h4>
+      <Grid xs={12}>
+        {headings.reduce((acc, heading, index) => {
+          acc.elements.push(<HeadingAnchor key={index} heading={heading} />);
+          return acc;
+        }, { elements: [] }).elements}
+      </Grid>
+    </div>
   )
 }
