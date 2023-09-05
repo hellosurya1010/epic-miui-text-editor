@@ -399,7 +399,7 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
     let posOffset = 0
     let hasAddAndDelete = false
     allSteps.forEach((step: Step, _index: number, _arr: Step[]) => {
-      if (step instanceof ReplaceStep) {
+      if (step instanceof ReplaceStep && !step.slice.content?.content.some(mark => mark.type.name == 'image')) {
         // loss chars
         let delCount = 0
         if (step.from !== step.to) {
@@ -466,7 +466,7 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
     
     let reAddOffset = 0
     allSteps.forEach((step: Step, index: number) => {
-      if (step instanceof ReplaceStep) {
+      if (step instanceof ReplaceStep && !step.slice.content?.content.some(mark => mark.type.name == 'image')) {
         const invertedStep = step.invert(transaction.docs[index])
         if (step.slice.size) {
           const insertionMark = editor.state.doc.type.schema.marks.insertion.create({

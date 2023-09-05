@@ -101,7 +101,7 @@ export default function useExtensions({
       SearchAndReplace,
       TableOfContents,
       TrackChangeExtension.configure({
-        enabled: true,
+        enabled: false,
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
         }
