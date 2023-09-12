@@ -11,6 +11,7 @@ export const HeadingPanel = () => {
             {[1, 2, 3, 4, 5, 6].map((level, index) => (
                 <Button
                     key={index}
+                    size='small'
                     variant={`${curentHeadingLevel == level ? 'contained' : 'outlined'}`}
                     color='inherit'
                     onClick={() => {
@@ -21,6 +22,7 @@ export const HeadingPanel = () => {
             {['FancyBorder', 'HandwrittenText', 'GothicText', 'Monospace', "Barlow", "GlowingText", "OutlineText"].map((className, index) => (
                 <Button
                     key={index}
+                    size='small'
                     variant={`${curentHeadingClassName.includes(className) ? 'contained' : 'outlined'}`}
                     color='inherit'
                     onClick={() => {
