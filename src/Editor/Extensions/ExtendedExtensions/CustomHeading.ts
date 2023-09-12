@@ -16,7 +16,7 @@ declare module '@tiptap/core' {
 }
 
 export const CustomHeading = Heading.extend({
-    priority: 10000,
+    // priority: 10000,
     addAttributes() {
         return {
             ...this.parent?.(),

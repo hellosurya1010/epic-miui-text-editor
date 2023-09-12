@@ -108,7 +108,7 @@ export default function useExtensions({
           // myTrackChangeEnabled = status
         }
       }),
-      ...getWordTagsNode(),
+      // ...getWordTagsNode(),
       // We incorporate all of the functionality that's part of
       // https://tiptap.dev/api/extensions/starter-kit, plus a few additional
       // extensions, including mui-tiptap's
