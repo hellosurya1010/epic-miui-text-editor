@@ -12,7 +12,7 @@ export const HeadingPanel = () => {
                 <Button
                     key={index}
                     size='small'
-                    variant={`${curentHeadingLevel == level ? 'contained' : 'outlined'}`}
+                    variant={`${curentHeadingLevel == level && curentHeadingClassName == "" ? 'contained' : 'outlined'}`}
                     color='inherit'
                     onClick={() => {
                         editor?.commands.setHeading({ level: level });
