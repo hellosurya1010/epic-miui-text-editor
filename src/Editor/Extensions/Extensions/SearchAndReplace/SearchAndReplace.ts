@@ -229,11 +229,16 @@ export const SearchAndReplace = Extension.create<SearchAndReplaceOptions, Search
                 return false
             },
             replaceAll: () => ({ editor, tr, dispatch }) => {
-                const { replaceTerm, results } = editor.storage.searchAndReplace
-
-                replaceAll(replaceTerm, results, { tr, dispatch })
-
-                return false
+                const { results } = this.storage;
+                for (let result of results) {
+                    console.log(result);
+                    this.editor.commands.replace();
+                }
+                return true;
+                // const { replaceTerm, results } = editor.storage.searchAndReplace
+                // this.storage.results
+                // replaceAll(replaceTerm, results, { tr, dispatch })
+                // return false
             },
         }
     },

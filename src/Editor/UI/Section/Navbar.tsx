@@ -71,7 +71,7 @@ const HomeTabMenus = ({theme}: {theme: Theme}) => {
         hideUnsetOption
       />
       <MenuDivider />
-      <MenuSelectHeading />
+      {/* <MenuSelectHeading /> */}
       <MenuDivider />
       {/* <MenuSelectFontSize />
       <MenuDivider /> */}

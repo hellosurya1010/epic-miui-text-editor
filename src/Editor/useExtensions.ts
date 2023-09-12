@@ -47,6 +47,8 @@ import TrackChangeExtension from "./Extensions/Marks/TrackChanges/TrackChanges";
 import { MathNode } from "./Extensions/Nodes/MathNode/MathNode";
 import { TableOfContents } from "./Extensions/Extensions/TableOfContents/TableOfContents";
 import Heading from "@tiptap/extension-heading";
+import { CustomHeading } from "./Extensions/ExtendedExtensions/CustomHeading";
+import { HeadingStyles } from "./Extensions/Extensions/HeadingStyles/HeadingStyles";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -101,7 +103,7 @@ export default function useExtensions({
       SearchAndReplace,
       TableOfContents,
       TrackChangeExtension.configure({
-        enabled: false,
+        enabled: true,
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
         }
@@ -197,7 +199,9 @@ export default function useExtensions({
       History,
 
       // CustomParagraph,
-      // CustomHeading,
+      CustomHeading,
+      // SpanRetHeadingStylesain,
+      HeadingStyles,
       FileSave,
       Footnote,
 
