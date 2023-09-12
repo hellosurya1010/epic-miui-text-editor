@@ -16,7 +16,7 @@ declare module '@tiptap/core' {
 }
 
 export const CustomHeading = Heading.extend({
-    priority: 10000,
+    // priority: 10000,
     addAttributes() {
         return {
             ...this.parent?.(),
@@ -30,7 +30,7 @@ export const CustomHeading = Heading.extend({
                     return attrs;
                 }
             },
-            ...addNodeAttributes(),
+            // ...addNodeAttributes(),
         }
     },
     renderHTML({ node, HTMLAttributes }) {
@@ -38,6 +38,7 @@ export const CustomHeading = Heading.extend({
         const level = hasLevel
             ? node.attrs.level
             : this.options.levels[0];
+            console.log(HTMLAttributes);
         return [`p`, mergeAttributes(this.options.HTMLAttributes, { ...removeEmptyAttributes(HTMLAttributes), class: `${HTMLAttributes.class} Heading${level}`, 'data': 'sample' }), 0]
     },
     addCommands() {

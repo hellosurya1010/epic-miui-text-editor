@@ -1,0 +1,71 @@
+.FancyBorder {
+    font-size: 16px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 3px solid #ff6b6b;
+    border-radius: 10px;
+}
+
+.HandwrittenText {
+    font-size: 36px;
+    font-family: 'Dancing Script', cursive !important;
+    color: #ff5733;
+}
+
+.GothicText {
+    font-size: 16px;
+    font-family: 'Blackletter', cursive !important;
+    color: #8e44ad;
+    letter-spacing: 2px;
+}
+
+.Monospace {
+    font-size: 18px;
+    font-weight: bold;
+    /* background-image: linear-gradient(45deg, #f06, #f90, #ff0, #0f6, #09f, #90f, #f06); */
+    background-color: black;
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: monospace !important;
+    /* animation: rainbow 8s linear infinite; */
+}
+
+.GlowingText {
+    font-size: 36px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Pacifico', cursive;
+    animation: glow 2s infinite alternate;
+}
+
+.OutlineText {
+    font-size: 36px;
+    color: #3498db;
+    text-align: center;
+    -webkit-text-stroke: 2px #2980b9;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    }
+
+    100% {
+        text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+    }
+}
+
+
+@keyframes rainbow {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}

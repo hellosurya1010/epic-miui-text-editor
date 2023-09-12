@@ -43,7 +43,7 @@ export default function Editor() {
       const { fileSave } = store.getState();
       axios.get(`${laravel.url}/get-document-content/123456`)
         .then(res => {
-          setDoc(pre => ({...pre, content: res.data.data.wordDocument, set: true}));
+          setDoc(pre => ({ ...pre, content: res.data.data.wordDocument, set: true }));
         }).catch(err => {
         })
     } catch (error) {
@@ -60,6 +60,11 @@ export default function Editor() {
             main: "#42B81A",
           },
         },
+        typography: {
+          button: {
+            textTransform: 'none',
+          },
+        },
       }),
     [paletteMode]
   );
@@ -67,7 +72,7 @@ export default function Editor() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {doc.set && <EditorView content={doc.content}/>}
+      {doc.set && <EditorView content={doc.content} />}
     </ThemeProvider>
   );
 }

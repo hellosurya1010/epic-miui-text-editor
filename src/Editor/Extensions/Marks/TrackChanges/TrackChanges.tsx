@@ -7,7 +7,7 @@ import type { Transaction } from '@tiptap/pm/state'
 import './style.css'
 
 
-const LOG_ENABLED = true
+const LOG_ENABLED = false;
 
 export const MARK_DELETION = 'deletion'
 export const MARK_INSERTION = 'insertion'
