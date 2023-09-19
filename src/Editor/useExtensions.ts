@@ -49,6 +49,7 @@ import { TableOfContents } from "./Extensions/Extensions/TableOfContents/TableOf
 import Heading from "@tiptap/extension-heading";
 import { CustomHeading } from "./Extensions/ExtendedExtensions/CustomHeading";
 import { HeadingStyles } from "./Extensions/Extensions/HeadingStyles/HeadingStyles";
+import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -137,7 +138,7 @@ export default function useExtensions({
       HardBreak,
       ListItem,
       OrderedList,
-      Paragraph,
+      // Paragraph,
       CustomSubscript,
       CustomSuperscript,
       Text,
@@ -198,7 +199,7 @@ export default function useExtensions({
       // collaborative editing
       History,
 
-      // CustomParagraph,
+      CustomParagraph,
       CustomHeading,
       // SpanRetHeadingStylesain,
       HeadingStyles,

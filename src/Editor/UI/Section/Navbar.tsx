@@ -5,11 +5,11 @@ import * as React from 'react';
 import { useTheme } from '@emotion/react';
 import { Button, Paper, Theme, colors } from '@mui/material';
 import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuDivider, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign, TableBubbleMenu, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
+import MenuButtonFindAndReplace from '../../Extensions/Extensions/SearchAndReplace/MenuButtonFindAndReplace';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
-import MenuButtonFindAndReplace from '../../Extensions/Extensions/SearchAndReplace/MenuButtonFindAndReplace';
 
 
 interface TabPanelProps {
@@ -72,7 +72,7 @@ const HomeTabMenus = ({theme}: {theme: Theme}) => {
       />
       <MenuDivider />
       {/* <MenuSelectHeading /> */}
-      <MenuDivider />
+      {/* <MenuDivider /> */}
       {/* <MenuSelectFontSize />
       <MenuDivider /> */}
       <MenuButtonBold />

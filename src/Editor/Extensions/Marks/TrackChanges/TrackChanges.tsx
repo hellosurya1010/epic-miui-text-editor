@@ -78,11 +78,12 @@ export const InsertionMark = Mark.create({
   },
   parseHTML () {
     return [
-      { tag: 'insert' }
+      { tag: 'insert' },
+      { tag: 'ins' },
     ]
   },
   renderHTML ({ HTMLAttributes }) {
-    return ['insert', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    return ['ins', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   }
 })
 
@@ -107,11 +108,12 @@ export const DeletionMark = Mark.create({
   },
   parseHTML () {
     return [
-      { tag: 'delete' }
+      { tag: 'delete' },
+      { tag: 'del' },
     ]
   },
   renderHTML ({ HTMLAttributes }) {
-    return ['delete', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    return ['del', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   }
 })
 

@@ -20,11 +20,12 @@ export const CustomParagraph = Paragraph.extend({
         return {
             class: {
                 default: 'Paragraph',
+                parseHTML: (node) => node.classList,
             },
-            ...addNodeAttributes(),
+            // ...addNodeAttributes(),
         };
     },
     renderHTML({ node, HTMLAttributes }) {
-        return [HTMLAttributes.name, mergeAttributes(this.options.HTMLAttributes, removeEmptyAttributes(HTMLAttributes)), 0];
+        return ['p', mergeAttributes(this.options.HTMLAttributes, removeEmptyAttributes(HTMLAttributes)), 0];
     },
 })
