@@ -57,20 +57,40 @@ declare module '@tiptap/core' {
   }
 }
 
+const addUserDataAttribute = () => {
+  return {
+    'data-userid': {
+      type: 'string',
+      default: () => '',
+      parseHTML: element => element.dataset.userid,
+    },
+    'data-username': {
+      type: 'string',
+      default: () => '',
+      parseHTML: element => element.dataset.username,
+    },
+    'data-time': {
+      type: 'string',
+      default: () => '',
+      parseHTML: element => element.dataset.time,
+    }
+  }
+}
+
 // insert mark
 export const InsertionMark = Mark.create({
   name: MARK_INSERTION,
   addAttributes () {
     return {
-      'data-op-user-id': {
+      'data-userid': {
         type: 'string',
         default: () => '',
       },
-      'data-op-user-nickname': {
+      'data-username': {
         type: 'string',
         default: () => '',
       },
-      'data-op-date': {
+      'data-time': {
         type: 'string',
         default: () => '',
       }
@@ -78,7 +98,7 @@ export const InsertionMark = Mark.create({
   },
   parseHTML () {
     return [
-      { tag: 'insert' },
+      // { tag: 'insert' },
       { tag: 'ins' },
     ]
   },
@@ -92,15 +112,15 @@ export const DeletionMark = Mark.create({
   name: MARK_DELETION,
   addAttributes () {
     return {
-      'data-op-user-id': {
+      'data-userid': {
         type: 'string',
         default: () => '',
       },
-      'data-op-user-nickname': {
+      'data-username': {
         type: 'string',
         default: () => '',
       },
-      'data-op-date': {
+      'data-time': {
         type: 'string',
         default: () => '',
       }
@@ -108,7 +128,7 @@ export const DeletionMark = Mark.create({
   },
   parseHTML () {
     return [
-      { tag: 'delete' },
+      // { tag: 'delete' },
       { tag: 'del' },
     ]
   },
@@ -131,7 +151,8 @@ let isStartChineseInput = false
 const getSelfExt = (editor: Editor) => editor.extensionManager.extensions.find(item => item.type === 'extension' && item.name === EXTENSION_NAME) as Extension
 
 // get the current minute time, avoid two char with different time splitted with too many marks
-const getMinuteTime = () => Math.round(new Date().getTime() / 1000 / 60) * 1000 * 60
+const getMinuteTime = () => '2023-09-21T15:29:00Z';
+// const getMinuteTime = () => Math.round(new Date().getTime() / 1000 / 60) * 1000 * 60
 
 /**
  * accept or reject tracked changes for all content or just the selection
@@ -472,9 +493,9 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
         const invertedStep = step.invert(transaction.docs[index])
         if (step.slice.size) {
           const insertionMark = editor.state.doc.type.schema.marks.insertion.create({
-            'data-op-user-id': thisExtension.options.dataOpUserId,
-            'data-op-user-nickname': thisExtension.options.dataOpUserNickname,
-            'data-op-date': getMinuteTime()
+            'data-userid': thisExtension.options.dataOpUserId,
+            'data-username': thisExtension.options.dataOpUserNickname,
+            'data-time': getMinuteTime()
           })
           const deletionMark = editor.state.doc.type.schema.marks.deletion.create()
           const from = step.from + reAddOffset
@@ -534,9 +555,9 @@ export const TrackChangeExtension = Extension.create<{ enabled: boolean, onStatu
           const to = from + reAddStep.slice.size
           // add delete mark for readd content
           newChangeTr.addMark(from, to, newChangeTr.doc.type.schema.marks.deletion.create({
-            'data-op-user-id': thisExtension.options.dataOpUserId,
-            'data-op-user-nickname': thisExtension.options.dataOpUserNickname,
-            'data-op-date': getMinuteTime()
+            'data-userid': thisExtension.options.dataOpUserId,
+            'data-username': thisExtension.options.dataOpUserNickname,
+            'data-time': getMinuteTime()
           }))
           skipSteps.forEach((step) => {
             // delete the content if it is already with insert mark

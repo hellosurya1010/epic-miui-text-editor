@@ -11,20 +11,26 @@ declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         paraStyle: {
             setParaStyle: () => ReturnType,
-            setParaStyleClassNames: ({classNames} : {classNames: string[]}) => ReturnType,
-            setCharacterStyleClassNames: ({classNames} : {classNames: string[]}) => ReturnType,
-            setCssStyle: ({styles} : {styles: string}) => ReturnType,
+            setParaStyleClassNames: ({ classNames }: { classNames: string }) => ReturnType,
+            setCharacterStyleClassNames: ({ classNames }: { classNames: string[] }) => ReturnType,
+            setCssStyle: ({ styles }: { styles: string }) => ReturnType,
         }
     }
 }
+
+export const initialCssStyles = `
+.surya{
+    color: red;
+}
+`;
 
 export const CustomHeading = Heading.extend({
     // priority: 10000,
     addStorage() {
         return {
-            paraStyleClassNames: [], 
-            characterStyleClassNames: [], 
-            cssStyles: '',
+            paraStyleClassNames: [],
+            characterStyleClassNames: [],
+            cssStyles: initialCssStyles,
         }
     },
     addAttributes() {
@@ -48,7 +54,7 @@ export const CustomHeading = Heading.extend({
         const level = hasLevel
             ? node.attrs.level
             : this.options.levels[0];
-            console.log(HTMLAttributes);
+        console.log(HTMLAttributes);
         return [`p`, mergeAttributes(this.options.HTMLAttributes, { ...removeEmptyAttributes(HTMLAttributes), class: `${HTMLAttributes.class} Heading${level}`, 'data': 'sample' }), 0]
     },
     addCommands() {
@@ -57,15 +63,25 @@ export const CustomHeading = Heading.extend({
             setParaStyle: () => ({ editor }) => {
                 return true;
             },
-            setParaStyleClassNames: ({classNames}) => ({ editor }) => {
-                this.storage.paraStyleClassNames = classNames;
+            setParaStyleClassNames: ({ classNames }) => ({ editor }) => {
+                const extractClassNames = (styles: string): string[] => {
+                    const regex = /\.([\w-]+)\s*{/g;
+                    const classNames: string[] = [];
+                    let match: RegExpExecArray | null;
+
+                    while ((match = regex.exec(styles)) !== null) {
+                        classNames.push(match[1]);
+                    }
+                    return classNames;
+                }
+                this.storage.paraStyleClassNames = extractClassNames(classNames);
                 return true;
             },
-            setCharacterStyleClassNames: ({classNames}) => ({ editor }) => {
+            setCharacterStyleClassNames: ({ classNames }) => ({ editor }) => {
                 this.storage.characterStyleClassNames = classNames;
                 return true;
             },
-            setCssStyle: ({styles}) => ({ editor }) => {
+            setCssStyle: ({ styles }) => ({ editor }) => {
                 this.storage.cssStyles = styles;
                 return true;
             },
