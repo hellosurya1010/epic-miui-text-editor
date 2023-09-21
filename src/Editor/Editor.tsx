@@ -75,6 +75,9 @@ export default function Editor({ content }: { content: string }) {
               margin: "0 auto",
             }}
           >
+            <style>
+                {editor?.storage.heading.cssStyles}
+            </style>
             <RichTextField
               controls={<Navbar />}
             />

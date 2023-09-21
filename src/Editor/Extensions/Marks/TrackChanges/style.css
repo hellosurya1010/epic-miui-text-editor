@@ -1,9 +1,9 @@
-insert {
+ins {
     color: #388e3c;
     text-decoration: underline;
 }
 
-delete {
+del {
     color: #d32f2f;
     text-decoration: line-through;
 }

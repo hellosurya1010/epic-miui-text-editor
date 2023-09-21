@@ -4,12 +4,14 @@ import * as React from 'react';
 // import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
 import { useTheme } from '@emotion/react';
 import { Button, Paper, Theme, colors } from '@mui/material';
-import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuDivider, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign, TableBubbleMenu, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
+import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuDivider, MenuSelectFontFamily, MenuSelectTextAlign, TableBubbleMenu, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
 import MenuButtonFindAndReplace from '../../Extensions/Extensions/SearchAndReplace/MenuButtonFindAndReplace';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
+import { FileDrawer } from './controls/Files/FileDrawer';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
+
 
 
 interface TabPanelProps {
@@ -48,6 +50,7 @@ function a11yProps(index: number) {
 const HomeTabMenus = ({theme}: {theme: Theme}) => {
   return (
     <>
+      <FileDrawer/>
       <MenuButtonUndo />
       <MenuButtonRedo />
       <MenuDivider />

@@ -8,7 +8,7 @@ export const HeadingPanel = () => {
     const curentHeadingLevel = nodeAttributes.level;
     return (
         <div style={{ padding: '10px', display: 'flex', flexDirection: 'column', gap: '10px', overflowY: 'auto',  height: '100%', scrollbarGutter: 'stable' }}>
-            {[1, 2, 3, 4, 5, 6].map((level, index) => (
+            {/* {[1, 2, 3, 4, 5, 6].map((level, index) => (
                 <Button
                     key={index}
                     size='small'
@@ -20,6 +20,17 @@ export const HeadingPanel = () => {
                 ><div style={{ fontSize: '15px', padding: 0, margin: '0 0 0 0 !important' }}>Heading {level}</div></Button>
             ))}
             {['FancyBorder', 'HandwrittenText', 'GothicText', 'Monospace', "Barlow", "GlowingText", "OutlineText"].map((className, index) => (
+                <Button
+                    key={index}
+                    size='small'
+                    variant={`${curentHeadingClassName.includes(className) ? 'contained' : 'outlined'}`}
+                    color='inherit'
+                    onClick={() => {
+                        editor?.commands.setHeadingStyle({ className });
+                    }}
+                ><div style={{ fontSize: '15px', padding: 0, margin: '0 0 0 0 !important' }} className={`${className}`}>{className}</div></Button>
+            ))} */}
+            {editor?.storage.heading.paraStyleClassNames.map((className, index) => (
                 <Button
                     key={index}
                     size='small'

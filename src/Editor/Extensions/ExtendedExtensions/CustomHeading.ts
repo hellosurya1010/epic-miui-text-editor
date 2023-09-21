@@ -11,12 +11,22 @@ declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         paraStyle: {
             setParaStyle: () => ReturnType,
+            setParaStyleClassNames: ({classNames} : {classNames: string[]}) => ReturnType,
+            setCharacterStyleClassNames: ({classNames} : {classNames: string[]}) => ReturnType,
+            setCssStyle: ({styles} : {styles: string}) => ReturnType,
         }
     }
 }
 
 export const CustomHeading = Heading.extend({
     // priority: 10000,
+    addStorage() {
+        return {
+            paraStyleClassNames: [], 
+            characterStyleClassNames: [], 
+            cssStyles: '',
+        }
+    },
     addAttributes() {
         return {
             ...this.parent?.(),
@@ -45,6 +55,18 @@ export const CustomHeading = Heading.extend({
         return {
             // ...this.parent?.(),
             setParaStyle: () => ({ editor }) => {
+                return true;
+            },
+            setParaStyleClassNames: ({classNames}) => ({ editor }) => {
+                this.storage.paraStyleClassNames = classNames;
+                return true;
+            },
+            setCharacterStyleClassNames: ({classNames}) => ({ editor }) => {
+                this.storage.characterStyleClassNames = classNames;
+                return true;
+            },
+            setCssStyle: ({styles}) => ({ editor }) => {
+                this.storage.cssStyles = styles;
                 return true;
             },
         }
