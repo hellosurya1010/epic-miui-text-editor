@@ -60,6 +60,7 @@ export const FileSave = Extension.create({
 
 const docFileUpload = (file: File, editor: Editor) => {
     editor?.commands.setTrackChangeStatus(false);
+    editor.commands.setLineProgress({isLoading: true, loadingFor: 'DocxFileToHtmlConversion'});
     editor?.commands.setContent(`<h1>Converting...</h1>`);
     editor?.commands.setCssStyle({ styles: initialCssStyles });
     axios.postForm(`${laravel.url}/editor/docx-to-html`, { file })
@@ -69,6 +70,8 @@ const docFileUpload = (file: File, editor: Editor) => {
             editor?.commands.setContent(res.data.data.html);
         }).catch(err => {
             console.error(err);
+        }).finally(() => {
+            editor.commands.setLineProgress(initialLineProgress);
         })
     return true;
 }

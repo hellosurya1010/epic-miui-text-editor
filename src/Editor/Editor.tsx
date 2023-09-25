@@ -36,6 +36,7 @@ export default function Editor({ content }: { content: string }) {
   });
 
   useEffect(() => {
+    window.editor = editor;
   }, [editor]);
 
   // const TableFlotingButtons = () => {
