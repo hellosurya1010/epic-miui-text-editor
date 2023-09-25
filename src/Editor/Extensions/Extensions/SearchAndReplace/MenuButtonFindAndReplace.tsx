@@ -70,7 +70,9 @@ export default function MenuButtonFindAndReplace(props: MenuButtonBoldProps) {
         // selected={editor?.isActive("bold") ?? false}
         disabled={!editor?.isEditable || !editor.can().toggleBold()}
         onClick={(event) => {
-          setAnchorEl(event.target?.closest('button'));
+          // const targetEl: HTMLElement = event.target;
+          // setAnchorEl(targetEl.closest('button'));
+          setAnchorEl((event.target as HTMLElement)?.closest('button'));
           setOpen((prev) => !prev);
         }}
         {...props}
