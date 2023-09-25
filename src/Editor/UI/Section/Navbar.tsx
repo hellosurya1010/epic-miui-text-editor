@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 // import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
+import LinearProgress from '@mui/material/LinearProgress';
 import { useTheme } from '@emotion/react';
 import { Button, Paper, Theme, colors } from '@mui/material';
 import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuDivider, MenuSelectFontFamily, MenuSelectTextAlign, TableBubbleMenu, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
@@ -11,6 +12,7 @@ import { FileDrawer } from './controls/Files/FileDrawer';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
+import { initialLineProgress } from '../../Extensions/Extensions/FileSave/FileSave';
 
 
 
@@ -47,10 +49,10 @@ function a11yProps(index: number) {
   };
 }
 
-const HomeTabMenus = ({theme}: {theme: Theme}) => {
+const HomeTabMenus = ({ theme }: { theme: Theme }) => {
   return (
     <>
-      <FileDrawer/>
+      <FileDrawer />
       <MenuButtonUndo />
       <MenuButtonRedo />
       <MenuDivider />
@@ -93,7 +95,6 @@ const HomeTabMenus = ({theme}: {theme: Theme}) => {
       <MenuButtonOrderedList />
       <MenuButtonBulletedList />
       <MenuButtonTaskList />
-
 
       <MenuButtonTextColor
         defaultTextColor={theme.palette.text.primary}
@@ -187,6 +188,8 @@ export default function Navbar() {
     setValue(newValue);
   };
 
+  const lineProgress = editor?.storage.fileSave.lineProgress ?? initialLineProgress;
+
   const theme = useTheme();
 
 
@@ -207,7 +210,8 @@ export default function Navbar() {
 
   return (
     <>
-      <Paper elevation={4} sx={{ width: '100%' }} style={{ background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important', padding: '0 15px', position: 'fixed', top: 0, left: 0 }}>
+      <Paper elevation={4} sx={{ width: '100%' }} style={{ background: 'linear-gradient(184deg, rgba(223,239,250,1) 0%, rgba(142,177,223,1) 100%)', color: '#fff !important', position: 'fixed', top: 0, left: 0 }}>          
+          <LinearProgress style={{ position: 'relative', top: 0, zIndex: 20000, height: '2px', visibility: `${lineProgress.isLoading ? 'visible' : "hidden"}` }} />
         <div style={{ display: 'flex', gap: '10px' }}>
           <TabButton index={1} label='Home' />
           <TabButton index={2} label='Insert' />

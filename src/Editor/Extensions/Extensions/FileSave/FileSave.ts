@@ -14,9 +14,15 @@ declare module '@tiptap/core' {
             saveFile: () => ReturnType,
             docFileUpload: ({ file }: { file: File }) => ReturnType,
             downloadAsDocx: () => ReturnType,
+            setLineProgress: ({ isLoading, loadingFor = "" }: { isLoading: boolean, loadingFor?: string }) => ReturnType,
         }
     }
 }
+
+export const initialLineProgress =  {
+    isLoading: false,
+    loadingFor: '',
+};
 
 export const FileSave = Extension.create({
     name: 'fileSave',
@@ -31,6 +37,15 @@ export const FileSave = Extension.create({
             downloadAsDocx: () => ({ editor }) => {
                 return downloadAsDocx(editor);
             },
+            setLineProgress: (props) => () => {
+                this.storage.lineProgress = props;
+                return true;
+            }
+        }
+    },
+    addStorage() {
+        return {
+            lineProgress:initialLineProgress,
         }
     },
     addKeyboardShortcuts() {
@@ -49,9 +64,9 @@ const docFileUpload = (file: File, editor: Editor) => {
     editor?.commands.setCssStyle({ styles: initialCssStyles });
     axios.postForm(`${laravel.url}/editor/docx-to-html`, { file })
         .then(res => {
-            editor?.commands.setContent(res.data.data.html);
             editor?.commands.setCssStyle({ styles: res.data.data.style });
             editor?.commands.setParaStyleClassNames({ classNames: res.data.data.style });
+            editor?.commands.setContent(res.data.data.html);
         }).catch(err => {
             console.error(err);
         })
@@ -71,6 +86,7 @@ ${content}
 </html>`;
 
 const downloadAsDocx = (editor: Editor) => {
+    editor.commands.setLineProgress({isLoading: true, loadingFor: 'DocxFileDownloading'});
     axios.post(`${laravel.url}/editor/html-to-docx`, { html: HtmlDoc(editor.getHTML()), css: editor.storage.heading.cssStyles })
         .then(res => {
             window.open(`${laravel.url}/file-download/${res.data.data.docxFilePath.replaceAll('/', '+')}`, "_blank");
@@ -82,14 +98,14 @@ const downloadAsDocx = (editor: Editor) => {
 
 
 const fileSave = (editor: Editor) => {
-    const { fileSave } = store.getState();
-    if (fileSave.isSaving) return true;
-    store.dispatch(startSaving());
+    const lineProgress: typeof initialLineProgress = editor?.storage.fileSave.lineProgress;
+    if (lineProgress.isLoading && lineProgress.loadingFor == "FileSaveing") return true;
+    editor.commands.setLineProgress({isLoading: true, loadingFor: 'FileSaveing'});
     axios.post(`${laravel.url}/update-document-content/123456`, { content: editor.getHTML() })
-        .then(res => {
-            store.dispatch(saveSuccess());
+    .then(res => {
+            editor.commands.setLineProgress(initialLineProgress);
         }).catch(err => {
-            store.dispatch(saveFailure("error"));
+            editor.commands.setLineProgress(initialLineProgress);
         });
     return true;
 }

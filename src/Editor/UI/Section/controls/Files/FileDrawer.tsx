@@ -44,8 +44,8 @@ export function FileDrawer() {
         onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                <HtmlToDocxFileDownloadButton />
                 <DocFileUploadButton />
+                <HtmlToDocxFileDownloadButton />
             </List>
             <Divider />
         </Box>
