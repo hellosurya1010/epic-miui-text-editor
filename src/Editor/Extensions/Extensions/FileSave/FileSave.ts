@@ -1,10 +1,6 @@
+import { Editor, Extension, Node } from "@tiptap/core";
 import axios from 'axios';
-import { Editor } from "@tiptap/core";
-import { Node } from "@tiptap/core";
-import { store } from "../../../../../store/app";
-import { saveFailure, saveSuccess, startSaving } from "../../../../../store/fileSaveSlice";
 import * as laravel from '../../../../../utils/laravel';
-import { Extension } from '@tiptap/core';
 import { initialCssStyles } from '../../ExtendedExtensions/CustomHeading';
 
 
@@ -59,21 +55,24 @@ export const FileSave = Extension.create({
 
 
 const docFileUpload = (file: File, editor: Editor) => {
-    editor?.commands.setTrackChangeStatus(false);
+
+    editor.commands.setTrackChangeStatus(false);
     editor.commands.setLineProgress({isLoading: true, loadingFor: 'DocxFileToHtmlConversion'});
-    editor?.commands.setContent(`<h1>Converting...</h1>`);
-    editor?.commands.setCssStyle({ styles: initialCssStyles });
+    editor.commands.setContent(`<h1>Converting...</h1>`);
+    editor.commands.setCssStyle({ styles: initialCssStyles });
     axios.postForm(`${laravel.url}/editor/docx-to-html`, { file })
         .then(res => {
-            editor?.commands.setCssStyle({ styles: res.data.data.style });
-            editor?.commands.setParaStyleClassNames({ classNames: res.data.data.style });
-            editor?.commands.setContent(res.data.data.html);
+            editor.commands.setCssStyle({ styles: res.data.data.style });
+            editor.commands.setParaStyleClassNames({ classNames: res.data.data.style });
+            editor.commands.setContent(res.data.data.html);
+            editor.commands.setLineProgress(initialLineProgress);
         }).catch(err => {
+            editor.commands.setLineProgress(initialLineProgress);
             console.error(err);
         }).finally(() => {
             editor.commands.setLineProgress(initialLineProgress);
         })
-    return true;
+            return true;
 }
 
 const HtmlDoc = (content: string) => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -83,7 +82,7 @@ const HtmlDoc = (content: string) => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1
     <title></title>
     <link href="converted_styles.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
+<body style="pagewidth:612pt;pageheight:792pt;">
 ${content}
 </body>
 </html>`;
@@ -95,6 +94,8 @@ const downloadAsDocx = (editor: Editor) => {
             window.open(`${laravel.url}/file-download/${res.data.data.docxFilePath.replaceAll('/', '+')}`, "_blank");
         }).catch(err => {
             console.error(err);
+        }).finally(() => {
+            editor.commands.setLineProgress(initialLineProgress);
         });
     return true;
 }
@@ -106,8 +107,10 @@ const fileSave = (editor: Editor) => {
     editor.commands.setLineProgress({isLoading: true, loadingFor: 'FileSaveing'});
     axios.post(`${laravel.url}/update-document-content/123456`, { content: editor.getHTML() })
     .then(res => {
-            editor.commands.setLineProgress(initialLineProgress);
-        }).catch(err => {
+        
+    }).catch(err => {
+        console.error(err);
+        }).finally(() => {
             editor.commands.setLineProgress(initialLineProgress);
         });
     return true;

@@ -24,12 +24,16 @@ export const initialCssStyles = `
 }
 `;
 
+export type ParaStyleClass = {
+    className: string,
+    styleType: 'Paragraph' | "Character",
+}
+
 export const CustomHeading = Heading.extend({
     // priority: 10000,
     addStorage() {
         return {
             paraStyleClassNames: [],
-            characterStyleClassNames: [],
             cssStyles: initialCssStyles,
         }
     },
@@ -64,17 +68,31 @@ export const CustomHeading = Heading.extend({
                 return true;
             },
             setParaStyleClassNames: ({ classNames }) => ({ editor }) => {
-                const extractClassNames = (styles: string): string[] => {
-                    const regex = /\.([\w-]+)\s*{/g;
-                    const classNames: string[] = [];
-                    let match: RegExpExecArray | null;
+                const styleString = classNames;
+                const styleBlocks = styleString.split('}');
+                const paraStyles: ParaStyleClass[] = [];
 
-                    while ((match = regex.exec(styles)) !== null) {
-                        classNames.push(match[1]);
+                // Iterate through the style blocks
+                styleBlocks.forEach(styleBlock => {
+                    // Split each style block into class name and style definitions
+                    const parts = styleBlock.split('{');
+                    if (parts.length === 2) {
+                        const className = parts[0].trim();
+                        const definitions = parts[1].trim();
+                        if(definitions != ""){
+                            paraStyles.push({
+                                className: className.startsWith('.') ? className.substring(1) : className,
+                                styleType: definitions.includes('page-break-inside') ? 'Paragraph' : "Character"
+                            });
+                        }
                     }
-                    return classNames;
-                }
-                this.storage.paraStyleClassNames = extractClassNames(classNames);
+                });
+                this.storage.paraStyleClassNames = paraStyles.sort((a, b) => {
+                    if(a.styleType == "Character"){
+                        return -1;
+                    }
+                    return 1;
+                });
                 return true;
             },
             setCharacterStyleClassNames: ({ classNames }) => ({ editor }) => {
@@ -88,3 +106,15 @@ export const CustomHeading = Heading.extend({
         }
     }
 })
+
+
+const extractClassNames = (styles: string): string[] => {
+    const regex = /\.([\w-]+)\s*{/g;
+    const classNames: string[] = [];
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(styles)) !== null) {
+        classNames.push(match[1]);
+    }
+    return classNames;
+}

@@ -50,6 +50,7 @@ import Heading from "@tiptap/extension-heading";
 import { CustomHeading } from "./Extensions/ExtendedExtensions/CustomHeading";
 import { HeadingStyles } from "./Extensions/Extensions/HeadingStyles/HeadingStyles";
 import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
+import { CharacterStyle } from "./Extensions/Extensions/CharacterStyle/CharacterStyle";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -211,6 +212,8 @@ export default function useExtensions({
 
       // Nodes
       MathNode,
+
+      CharacterStyle,
 
       // SpanRetain,
       ...getWordTagsMark(),
