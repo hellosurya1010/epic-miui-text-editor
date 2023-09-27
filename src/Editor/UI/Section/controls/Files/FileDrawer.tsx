@@ -59,6 +59,7 @@ export function FileDrawer() {
                     anchor={'left'}
                     open={state['left']}
                     onClose={toggleDrawer('left', false)}
+                    PaperProps={{style: {background: `linear-gradient(190deg, rgb(179, 206, 239) 0%, rgb(100, 144, 204) 100%)`}}}
                 >
                     {list('left')}
                 </Drawer>
