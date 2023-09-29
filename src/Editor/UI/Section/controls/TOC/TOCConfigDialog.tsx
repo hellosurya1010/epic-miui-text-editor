@@ -46,7 +46,7 @@ export const TOCConfigDialog = () => {
                                 let index = arr.findIndex(item => item.name == details?.option.name);
                                 switch (reason) {
                                     case 'selectOption':
-                                        arr[index].level = reason == "selectOption" ? level : null;
+                                        arr[index + ''].level = reason == "selectOption" ? level : null;
                                         break;
                                     case "clear":
                                         arr = arr.map(item => {

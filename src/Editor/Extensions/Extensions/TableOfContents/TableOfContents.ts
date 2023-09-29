@@ -11,12 +11,12 @@ export type AttributresForTOCElement = {
 }
 
 export const TOC_ELEMENTS = {
-    'heading': 'paragraph',
+    'paragraph': 'paragraph',
     'table': 'table',
     'image': 'image',
 } as const;
 
-export const DEFAULT_TOC_ELEMENTS = TOC_ELEMENTS.heading;
+export const DEFAULT_TOC_ELEMENTS = TOC_ELEMENTS.paragraph;
 
 declare module "@tiptap/core" {
     interface Commands<ReturnType> {
@@ -91,7 +91,7 @@ export const TableOfContents = Extension.create({
                                    });
                             }
                             if (node.type.name == currentlyTrackingElement) {
-                                if(node.type.name == TOC_ELEMENTS.heading){
+                                if(node.type.name == TOC_ELEMENTS.paragraph){
                                     const nodeClass = node.attrs.class.toLocaleLowerCase();
                                     if(['title', 'head', 'chapter'].some((className) => nodeClass.includes(className))){
                                         addDecToNode();

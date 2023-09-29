@@ -10,7 +10,7 @@ declare module '@tiptap/core' {
             saveFile: () => ReturnType,
             docFileUpload: ({ file }: { file: File }) => ReturnType,
             downloadAsDocx: () => ReturnType,
-            setLineProgress: ({ isLoading, loadingFor = "" }: { isLoading: boolean, loadingFor?: string }) => ReturnType,
+            setLineProgress: ({ isLoading, loadingFor }: { isLoading: boolean, loadingFor?: string }) => ReturnType,
         }
     }
 }

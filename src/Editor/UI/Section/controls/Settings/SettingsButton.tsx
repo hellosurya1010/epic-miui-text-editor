@@ -23,7 +23,7 @@ export const SettingsButton = () => {
         setOpen(true);
     };
 
-    const dialogContentRef = React.useRef(null);
+    const dialogContentRef = React.useRef<HTMLDivElement | null>(null);
 
     const handleClose = () => {
         setOpen(false);

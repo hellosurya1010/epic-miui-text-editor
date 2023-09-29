@@ -15,14 +15,15 @@ export const HeadingPanel = () => {
     const [scrollOffSets, setScrollOffSets] = useState({});
 
     useEffect(() => {
-        if (styleListRef.current != null) {
-            setScrollOffSets(() => {
-               return [...styleListRef.current.querySelectorAll('button')].reduce((acc, btn) => {
-                acc[btn.id] = btn.offsetTop;
-                return acc;
-               }, {});
-            })
-        }
+        setScrollOffSets((pre) => {
+            if (styleListRef.current != null) {
+                return [...styleListRef.current.querySelectorAll('button')].reduce((acc, btn) => {
+                    acc[btn.id] = btn.offsetTop;
+                    return acc;
+                }, {});
+            }
+            return pre;
+        })
         console.log(scrollOffSets);
     }, [styleListRef.current]);
 

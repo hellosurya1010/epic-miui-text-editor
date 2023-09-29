@@ -15,19 +15,14 @@ export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 
 export default function FileSaveButton(props: MenuButtonBoldProps) {
   const editor = useRichTextEditorContext();
-  const fileSave = useSelector(state => state.fileSave);
+  // const fileSave = useSelector(state => state.fileSave);
 
   return (
     <MenuButton
       tooltipLabel="Save"
       tooltipShortcutKeys={["mod", "S"]}
-      IconComponent={(props) => {
-        return (
-          !fileSave.isSaving ?
-          <SaveIcon {...props} /> :  <CircularProgress style={{color: grey['800']}} size={18} />
-        )
-      }}
-      disabled={fileSave.isSaving}
+      IconComponent={(props) => <SaveIcon {...props}/>}
+      // disabled={fileSave.isSaving}
       // selected={editor?.isActive("bold") ?? false}
       // disabled={!editor?.isEditable || !editor.can().toggleBold()}
       onClick={() => {

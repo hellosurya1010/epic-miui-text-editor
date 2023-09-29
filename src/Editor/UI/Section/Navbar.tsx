@@ -50,7 +50,9 @@ function a11yProps(index: number) {
   };
 }
 
-const HomeTabMenus = ({ theme }: { theme: Theme }) => {
+const HomeTabMenus = () => {
+  // const theme = useTheme();
+
   return (
     <>
       <FileDrawer />
@@ -99,7 +101,7 @@ const HomeTabMenus = ({ theme }: { theme: Theme }) => {
       <MenuButtonTaskList />
 
       <MenuButtonTextColor
-        defaultTextColor={theme.palette.text.primary}
+        // defaultTextColor={theme.palette.text.primary}
         swatchColors={[
           { value: "#000000", label: "Black" },
           { value: "#ffffff", label: "White" },
@@ -192,7 +194,6 @@ export default function Navbar() {
 
   const lineProgress = editor?.storage.fileSave.lineProgress ?? initialLineProgress;
 
-  const theme = useTheme();
 
 
   const TabButton = (props: { label: string, index: number }) => {
@@ -202,7 +203,7 @@ export default function Navbar() {
       borderBottom: `2px solid ${props.index == value ? colors.blue['400'] : 'transparent'}`
     };
     return (<Button
-      style={style}
+      // style={style}
       onClick={() => setValue(props.index)}
       size="small"
     >
@@ -219,7 +220,7 @@ export default function Navbar() {
           <TabButton index={2} label='Insert' />
         </div>
         <MenuControlsContainer>
-          {value == 1 && <HomeTabMenus theme={theme} />}
+          {value == 1 && <HomeTabMenus />}
           {value == 2 && <InsertTabMenus />}
         </MenuControlsContainer>
       </Paper>
