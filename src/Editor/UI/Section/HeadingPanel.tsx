@@ -5,9 +5,11 @@ import { ParaStyleClass } from '../../Extensions/ExtendedExtensions/CustomHeadin
 
 export const HeadingPanel = () => {
     const editor = useRichTextEditorContext();
-    const nodeAttributes = editor?.getAttributes('heading') ?? {};
+    // const nodeAttributes = editor?.getAttributes('heading') ?? {};
+    const nodeAttributes = editor?.getAttributes('paragraph') ?? {};
     const curentHeadingClassName = nodeAttributes.class ?? '';
     const curentHeadingLevel = nodeAttributes.level;
+    
     return (
         <div style={{ padding: '10px', display: 'flex', flexDirection: 'column', gap: '10px', overflowY: 'auto', height: '100%', scrollbarGutter: 'stable' }}>
             {/* {editor?.storage.heading.paraStyleClassNames.filter((paraStyle: ParaStyleClass, index) => paraStyle.styleType == 'Character').map((paraStyle: ParaStyleClass, index) => ( */}
