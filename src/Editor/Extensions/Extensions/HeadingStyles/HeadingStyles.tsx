@@ -20,7 +20,7 @@ export const HeadingStyles = Extension.create({
         return {
             setHeadingStyle: ({ className }) => ({ editor }: { editor: Editor }) => {
                 const oldAttributes = editor.getAttributes('heading');
-                editor.commands.setNode('heading', { ...oldAttributes, class: className });
+                editor.commands.setNode('paragraph', { ...oldAttributes, class: className });
                 return true;
             },
         }

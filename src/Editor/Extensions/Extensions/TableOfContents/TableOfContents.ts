@@ -91,7 +91,6 @@ export const TableOfContents = Extension.create({
                                    });
                             }
                             if (node.type.name == currentlyTrackingElement) {
-                                console.log(currentlyTrackingElement);
                                 if(node.type.name == TOC_ELEMENTS.heading){
                                     const nodeClass = node.attrs.class.toLocaleLowerCase();
                                     if(['title', 'head', 'chapter'].some((className) => nodeClass.includes(className))){
