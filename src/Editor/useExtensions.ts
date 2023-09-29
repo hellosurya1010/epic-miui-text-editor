@@ -106,6 +106,8 @@ export default function useExtensions({
       TableOfContents,
       TrackChangeExtension.configure({
         enabled: true,
+        dataOpUserId: '12', 
+        dataOpUserNickname: 'Admin',
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
         }

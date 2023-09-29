@@ -2,17 +2,18 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 // import { MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuSelectFontFamily, MenuSelectHeading, MenuSelectTextAlign } from './controls';
-import LinearProgress from '@mui/material/LinearProgress';
 import { useTheme } from '@emotion/react';
 import { Button, Paper, Theme, colors } from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
 import { LinkBubbleMenu, MenuButtonAddImage, MenuButtonAddTable, MenuButtonBlockquote, MenuButtonBold, MenuButtonBulletedList, MenuButtonCode, MenuButtonCodeBlock, MenuButtonEditLink, MenuButtonHighlightColor, MenuButtonHorizontalRule, MenuButtonIndent, MenuButtonItalic, MenuButtonOrderedList, MenuButtonRedo, MenuButtonRemoveFormatting, MenuButtonStrikethrough, MenuButtonSubscript, MenuButtonSuperscript, MenuButtonTaskList, MenuButtonTextColor, MenuButtonUnderline, MenuButtonUndo, MenuButtonUnindent, MenuControlsContainer, MenuDivider, MenuSelectFontFamily, MenuSelectTextAlign, TableBubbleMenu, isTouchDevice, useRichTextEditorContext } from 'mui-tiptap';
+import { initialLineProgress } from '../../Extensions/Extensions/FileSave/FileSave';
 import MenuButtonFindAndReplace from '../../Extensions/Extensions/SearchAndReplace/MenuButtonFindAndReplace';
 import FileSaveButton from './controls/FileSaveButton/FileSaveButton';
 import { FileDrawer } from './controls/Files/FileDrawer';
 import MenuButtonFootnote from './controls/Footnote/MenuButtonFootnote';
 import MenuButtonMathEditor from './controls/MathEditor/MenuButtonMathEditor';
+import { SettingsButton } from './controls/Settings/SettingsButton';
 import { MenuButtonAcceptAllChanges, MenuButtonAcceptChanges, MenuButtonRejectAllChanges, MenuButtonRejectChanges, MenuButtonTrackChangesToggler } from './controls/TrackChanges/MenuButtonTrackChanges';
-import { initialLineProgress } from '../../Extensions/Extensions/FileSave/FileSave';
 
 
 
@@ -53,6 +54,7 @@ const HomeTabMenus = ({ theme }: { theme: Theme }) => {
   return (
     <>
       <FileDrawer />
+      {/* <SettingsButton/> */}
       <MenuButtonUndo />
       <MenuButtonRedo />
       <MenuDivider />

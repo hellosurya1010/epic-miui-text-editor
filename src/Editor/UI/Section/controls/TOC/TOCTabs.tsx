@@ -60,7 +60,7 @@ const HeadingAnchor = ({ heading }: { heading: AttributresForTOCElement }) => {
         acc[level] = style;
         return acc;
     }, {});
-    return <a href={`/#${id}`} className='toc-active' style={styles[level]}>{heading.node.textContent}</a>
+    return <a href={`/#${id}`} className='toc-active' style={styles[level ?? 1]}>{heading.node.textContent}</a>
 }
 
 const TableAnchor = ({ table }: { table: AttributresForTOCElement }) => {

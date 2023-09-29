@@ -20,7 +20,7 @@ export const CustomParagraph = Paragraph.extend({
         return {
             class: {
                 default: 'Paragraph',
-                parseHTML: (node) => node.classList,
+                parseHTML: (node) => [...node.classList].join(' '),
             },
             // ...addNodeAttributes(),
         };

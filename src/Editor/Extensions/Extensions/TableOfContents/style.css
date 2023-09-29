@@ -3,6 +3,11 @@ html {
 }
 
 .toc-active{
-    /* background-color: rgb(57, 57, 222); */
+    margin: 4px 0;
+    padding: 4px 6px;
     margin: '20px 0' !important;
+}
+
+.toc-active:hover{
+    background-color: #7bb0f4;
 }

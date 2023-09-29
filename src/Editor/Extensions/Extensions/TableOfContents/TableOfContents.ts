@@ -11,7 +11,7 @@ export type AttributresForTOCElement = {
 }
 
 export const TOC_ELEMENTS = {
-    'heading': 'heading',
+    'heading': 'paragraph',
     'table': 'table',
     'image': 'image',
 } as const;
@@ -79,16 +79,27 @@ export const TableOfContents = Extension.create({
                         const { currentlyTrackingElement } = this.storage;
                         // Traverse the document to find paragraph and heading nodes
                         state.doc.descendants((node, pos, _, index) => {
+                            const addDecToNode = () => {
+                                   // Add 'id' attribute as a decoration to the node
+                                   let id = `node-${node.type.name}-${index}`;
+                                   decorations.push(
+                                       Decoration.node(pos, pos + node.nodeSize, { id })
+                                   );
+                                   elements.push({
+                                       node,
+                                       id,
+                                   });
+                            }
                             if (node.type.name == currentlyTrackingElement) {
-                                // Add 'id' attribute as a decoration to the node
-                                let id = `node-${node.type.name}-${index}`;
-                                decorations.push(
-                                    Decoration.node(pos, pos + node.nodeSize, { id })
-                                );
-                                elements.push({
-                                    node,
-                                    id,
-                                });
+                                console.log(currentlyTrackingElement);
+                                if(node.type.name == TOC_ELEMENTS.heading){
+                                    const nodeClass = node.attrs.class.toLocaleLowerCase();
+                                    if(['title', 'head', 'chapter'].some((className) => nodeClass.includes(className))){
+                                        addDecToNode();
+                                    }
+                                }else{
+                                    addDecToNode();
+                                }
                             }
                         });
                         this.storage[currentlyTrackingElement] = elements;

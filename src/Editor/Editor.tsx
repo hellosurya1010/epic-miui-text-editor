@@ -16,6 +16,7 @@ import './editor-styles.css';
 import useExtensions from "./useExtensions";
 import { LeftSidebar } from "./UI/Section/LeftSidebar";
 import { RightSidebar } from "./UI/Section/RightSidebar";
+import { getCssString } from "./Extensions/Extensions/FileSave/FileSave";
 // import { content } from "./content";
 
 
@@ -24,27 +25,25 @@ export default function Editor({ content }: { content: string }) {
   const extensions = useExtensions({
     placeholder: "Add your own content here...",
   });
+  const { html, css } =  getCssString(content);
   const rteRef = useRef<RichTextEditorRef>(null);
   const [isEditable, setIsEditable] = useState(true);
   const [showMenuBar, setShowMenuBar] = useState(true);
   const [submittedContent, setSubmittedContent] = useState("");
-
+  
 
   const editor = useEditor({
     extensions: extensions,
-    content: content,
+    content: html,
+    onCreate: (props) => {
+      props.editor.commands.setCssStyle({ styles: css });
+      props.editor.commands.setParaStyleClassNames({ classNames: css });
+    }
   });
 
   useEffect(() => {
     window.editor = editor;
   }, [editor]);
-
-  // const TableFlotingButtons = () => {
-  //   return (<>
-  //     <LinkBubbleMenu />
-  //     <TableBubbleMenu />
-  //   </>)
-  // };
 
   return (
     <RichTextEditorProvider editor={editor}>
@@ -55,7 +54,7 @@ export default function Editor({ content }: { content: string }) {
 
       <Grid id="main" style={{ background: 'linear-gradient(190deg, rgba(179,206,239,1) 0%, rgba(100,144,204,1) 100%)', marginTop: '61px' }} container>
         <Grid item xs={2}>
-          <LeftSidebar/>
+          <LeftSidebar />
         </Grid>
         <Grid item marginTop={'10px'} xs={8} >
           <Box
@@ -76,50 +75,17 @@ export default function Editor({ content }: { content: string }) {
             }}
           >
             <style>
-                {editor?.storage.heading.cssStyles}
+              {editor?.storage.heading.cssStyles}
             </style>
             <RichTextField
               controls={<Navbar />}
             />
-            {/* <TableFlotingButtons /> */}
-            {/* <RichTextEditor
-              ref={rteRef}
-              extensions={extensions}
-              content={exampleContent}
-              editable={isEditable}
-              // renderControls={() => <EditorMenuControls />}
-              onCreate={(props) => {
-                window.editor = props.editor;
-                setEditor(props.editor);
-                // dispatch(initEditor({ editor: props.editor }));
-              }}
-              RichTextFieldProps={{
-                MenuBarProps: {
-                  hide: !showMenuBar,
-                },
-                // Below is an example of adding a toggle within the outlined field
-                // for showing/hiding the editor menu bar, and a "submit" button for
-                // saving/viewing the HTML content
-              }}
-            >
-              {() => (
-                <>
-                  <LinkBubbleMenu />
-                  <TableBubbleMenu />
-                </>
-              )}
-            </RichTextEditor> */}
           </Box>
         </Grid>
         <Grid item xs={2}>
-          <RightSidebar/>
+          <RightSidebar />
         </Grid>
       </Grid>
-      {/* <Grid>
-        <Grid item xs={12} style={{position: 'fixed', bottom: 0, backgroundColor: colors.blue['400'], width: '100%'}}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, recusandae. Minus, nostrum a veritatis tempore 
-        </Grid>
-      </Grid> */}
     </RichTextEditorProvider>
   );
 }

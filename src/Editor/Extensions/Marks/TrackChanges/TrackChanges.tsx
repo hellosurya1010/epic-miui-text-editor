@@ -84,11 +84,11 @@ export const InsertionMark = Mark.create({
     return {
       'data-userid': {
         type: 'string',
-        default: () => '',
+        default: () => '12',
       },
       'data-username': {
         type: 'string',
-        default: () => '',
+        default: () => 'Admin',
       },
       'data-time': {
         type: 'string',
@@ -114,11 +114,11 @@ export const DeletionMark = Mark.create({
     return {
       'data-userid': {
         type: 'string',
-        default: () => '',
+        default: () => '12',
       },
       'data-username': {
         type: 'string',
-        default: () => '',
+        default: () => 'Admin',
       },
       'data-time': {
         type: 'string',

@@ -25,7 +25,7 @@ export const HeadingPanel = () => {
                     style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '5px'}}
                 >
                     <div style={{ position: 'relative', top: 0 }}>{paraStyle.styleType == "Paragraph" ? paragraphMark : characterMark}</div>
-                    <div style={{ fontSize: '15px', padding: 0, margin: '0 0 0 0 !important' }} className={`${paraStyle.className}`}>{paraStyle.className}</div>
+                    <div style={{ fontSize: '15px', padding: 0, margin: '0 0 0 0 !important' }} className={`${false && paraStyle.className}`}>{paraStyle.className}</div>
                 </Button>
             ))}
         </div>

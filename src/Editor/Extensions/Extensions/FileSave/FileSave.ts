@@ -15,7 +15,7 @@ declare module '@tiptap/core' {
     }
 }
 
-export const initialLineProgress =  {
+export const initialLineProgress = {
     isLoading: false,
     loadingFor: '',
 };
@@ -41,7 +41,8 @@ export const FileSave = Extension.create({
     },
     addStorage() {
         return {
-            lineProgress:initialLineProgress,
+            lineProgress: initialLineProgress,
+            currentFileName: '',
         }
     },
     addKeyboardShortcuts() {
@@ -57,14 +58,15 @@ export const FileSave = Extension.create({
 const docFileUpload = (file: File, editor: Editor) => {
 
     editor.commands.setTrackChangeStatus(false);
-    editor.commands.setLineProgress({isLoading: true, loadingFor: 'DocxFileToHtmlConversion'});
-    editor.commands.setContent(`<h1>Converting...</h1>`);
+    editor.commands.setLineProgress({ isLoading: true, loadingFor: 'DocxFileToHtmlConversion' });
+    editor.commands.setContent(`<h3>Processing...</h3>`);
     editor.commands.setCssStyle({ styles: initialCssStyles });
     axios.postForm(`${laravel.url}/editor/docx-to-html`, { file })
         .then(res => {
-            editor.commands.setCssStyle({ styles: res.data.data.style });
-            editor.commands.setParaStyleClassNames({ classNames: res.data.data.style });
-            editor.commands.setContent(res.data.data.html);
+            const {css, html} = getCssString(res.data.data.html);
+            editor.commands.setCssStyle({ styles: css });
+            editor.commands.setParaStyleClassNames({ classNames: css });
+            editor.commands.setContent(html);
             editor.commands.setLineProgress(initialLineProgress);
         }).catch(err => {
             editor.commands.setLineProgress(initialLineProgress);
@@ -72,24 +74,27 @@ const docFileUpload = (file: File, editor: Editor) => {
         }).finally(() => {
             editor.commands.setLineProgress(initialLineProgress);
         })
-            return true;
+    return true;
 }
 
-const HtmlDoc = (content: string) => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+const HtmlDoc = (editor: Editor) => {
+    return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title></title>
-    <link href="converted_styles.css" type="text/css" rel="stylesheet" />
-</head>
-<body style="pagewidth:612pt;pageheight:792pt;">
-${content}
-</body>
-</html>`;
+    <style type=\"text/css\"> ${editor.storage.heading.cssStyles}</style>
+    </head>
+    <body style="pagewidth:612pt;pageheight:792pt;">
+    ${editor.getHTML()}
+    </body>
+    </html>`;
+}
+// <style type="text/css">${editor.storage.heading.cssStyles}</>
 
 const downloadAsDocx = (editor: Editor) => {
-    editor.commands.setLineProgress({isLoading: true, loadingFor: 'DocxFileDownloading'});
-    axios.post(`${laravel.url}/editor/html-to-docx`, { html: HtmlDoc(editor.getHTML()), css: editor.storage.heading.cssStyles })
+    editor.commands.setLineProgress({ isLoading: true, loadingFor: 'DocxFileDownloading' });
+    axios.post(`${laravel.url}/editor/html-to-docx`, { html: HtmlDoc(editor), })
         .then(res => {
             window.open(`${laravel.url}/file-download/${res.data.data.docxFilePath.replaceAll('/', '+')}`, "_blank");
         }).catch(err => {
@@ -104,14 +109,29 @@ const downloadAsDocx = (editor: Editor) => {
 const fileSave = (editor: Editor) => {
     const lineProgress: typeof initialLineProgress = editor?.storage.fileSave.lineProgress;
     if (lineProgress.isLoading && lineProgress.loadingFor == "FileSaveing") return true;
-    editor.commands.setLineProgress({isLoading: true, loadingFor: 'FileSaveing'});
-    axios.post(`${laravel.url}/update-document-content/123456`, { content: editor.getHTML() })
-    .then(res => {
-        
-    }).catch(err => {
-        console.error(err);
+    editor.commands.setLineProgress({ isLoading: true, loadingFor: 'FileSaveing' });
+    axios.post(`${laravel.url}/update-document-content/123456`, { content: HtmlDoc(editor) })
+        .then(res => {
+
+        }).catch(err => {
+            console.error(err);
         }).finally(() => {
             editor.commands.setLineProgress(initialLineProgress);
         });
     return true;
 }
+
+export const getCssString = (htmlString: string): { html: string, css: string } => {
+    var stylePattern = /<style\s+(?:[^>]*?\s+)?type\s*=\s*["']?\s*text\/css\s*["']?\s*(?:[^>]*?\s+)?>([\s\S]*?)<\/style>/i;
+    // var stylePattern = /<style[^>]*>([\s\S]*?)<\/style>/i;
+    var matches = htmlString.match(stylePattern);
+    let html = htmlString;
+    let css = "";
+
+    if (matches && matches.length > 1) {
+        css = matches[1].trim();
+        html = htmlString.replace(stylePattern, '');
+    }
+    return { html, css };
+}
+
