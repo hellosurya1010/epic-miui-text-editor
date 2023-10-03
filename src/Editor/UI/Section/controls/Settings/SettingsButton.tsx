@@ -28,13 +28,13 @@ export const SettingsButton = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    
+
 
 
     return (
         <React.Fragment>
             <Button size='small' variant="text" onClick={handleClickOpen}>
-                <SettingsIcon fontSize='small'/>
+                <SettingsIcon fontSize='small' />
             </Button>
             <Dialog
                 fullWidth
@@ -46,10 +46,10 @@ export const SettingsButton = () => {
                 <DialogTitle>Settings</DialogTitle>
                 <DialogContent ref={dialogContentRef} style={{ padding: 0 }}>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Grid container style={{maxHeight: `${dialogContentRef.current?.offsetHeight}px`}}>
-                            <Grid item xs={2.5} style={{height: '100%', overflowY: 'auto'}}>
+                        <Grid container style={{ maxHeight: `${dialogContentRef.current?.offsetHeight}px` }}>
+                            <Grid item xs={2.5} style={{ height: '100%', overflowY: 'auto' }}>
                                 <List disablePadding>
-                                    {['TOC', ].map((text, index) => (
+                                    {['TOC',].map((text, index) => (
                                         <ListItem disableGutters key={index} disablePadding>
                                             <ListItemButton>
                                                 <ListItemIcon>
@@ -62,7 +62,7 @@ export const SettingsButton = () => {
                                 </List>
                             </Grid>
                             <Grid item padding={'10px'} xs={9.5}>
-                                <TOCConfigDialog/>
+                                <TOCConfigDialog />
                             </Grid>
                         </Grid>
                     </Box>

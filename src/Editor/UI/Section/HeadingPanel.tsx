@@ -24,7 +24,6 @@ export const HeadingPanel = () => {
             }
             return pre;
         })
-        console.log(scrollOffSets);
     }, [styleListRef.current]);
 
     useEffect(() => {
