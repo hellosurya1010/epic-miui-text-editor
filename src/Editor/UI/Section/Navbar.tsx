@@ -56,7 +56,7 @@ const HomeTabMenus = () => {
   return (
     <>
       <FileDrawer />
-      <SettingsButton/>
+      {/* <SettingsButton/> */}
       <MenuButtonUndo />
       <MenuButtonRedo />
       <MenuDivider />

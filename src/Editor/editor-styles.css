@@ -13,6 +13,10 @@
     overflow-y: scroll;
 }
 
+body{
+    overflow: hidden;
+}
+
 /* ::-webkit-scrollbar {
     height: 8px !important;
     width: 8px !important;

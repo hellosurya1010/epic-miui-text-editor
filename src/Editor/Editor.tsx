@@ -42,7 +42,7 @@ export default function Editor({ content }: { content: string }) {
   });
 
   useEffect(() => {
-    // window.editor = editor;
+    window.editor = editor;
   }, [editor]);
 
   return (
