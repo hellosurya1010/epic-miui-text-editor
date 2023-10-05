@@ -48,7 +48,7 @@ export const CharacterStyle = Extension.create<CharacterStyleOptions>({
                 attributes: {
                     class: {
                         default: '',
-                        parseHTML: (element) => element.classList,
+                        parseHTML: (element) => element.getAttribute('class'),
                     }
                 }
             }

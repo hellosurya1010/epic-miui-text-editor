@@ -8,11 +8,18 @@ export const HeadingPanel = () => {
     const editor = useRichTextEditorContext();
     // const nodeAttributes = editor?.getAttributes('heading') ?? {};
     const nodeAttributes = editor?.getAttributes('paragraph') ?? {};
+    const markAttributes = editor?.getAttributes('textStyle') ?? {};
+
+    const curentCharacterStyleClassName = markAttributes.class ?? '';
+
     const curentHeadingClassName = nodeAttributes.class ?? '';
     const curentHeadingLevel = nodeAttributes.level;
+    
     const styleListRef = useRef<HTMLDivElement | null>(null);
     const paraStyleClassNames = editor?.storage.heading.paraStyleClassNames ?? [];
     const [scrollOffSets, setScrollOffSets] = useState({});
+
+    console.log(scrollOffSets);
 
     useEffect(() => {
         setScrollOffSets((pre) => {
@@ -28,22 +35,22 @@ export const HeadingPanel = () => {
 
     useEffect(() => {
         const timeOutFn = setTimeout(() => {
-            if (curentHeadingClassName && styleListRef.current) {
+            if (styleListRef.current) {
                 styleListRef.current.scrollTo({
-                    top: scrollOffSets[`style-btn-${curentHeadingClassName}`] - 150,
+                    top: (scrollOffSets[`style-btn-${ curentCharacterStyleClassName ? curentCharacterStyleClassName : curentHeadingClassName}`] - 350) ?? undefined,
                 });
             }
         }, 100);
         return () => {
             clearTimeout(timeOutFn);
         };
-    }, [curentHeadingClassName]);
+    }, [curentHeadingClassName, curentCharacterStyleClassName]);
 
     return (
         <div ref={styleListRef} style={{ padding: '10px', display: 'flex', flexDirection: 'column', gap: '10px', overflowY: 'auto', height: '100%', scrollbarGutter: 'stable' }}>
             {/* {editor?.storage.heading.paraStyleClassNames.filter((paraStyle: ParaStyleClass, index) => paraStyle.styleType == 'Character').map((paraStyle: ParaStyleClass, index) => ( */}
             {paraStyleClassNames.map((paraStyle: ParaStyleClass, index) => {
-                const isActive = curentHeadingClassName.includes(paraStyle.className);
+                const isActive = curentCharacterStyleClassName.includes(paraStyle.className) || curentHeadingClassName.includes(paraStyle.className);
                 return (
                     <Button
                         key={index}

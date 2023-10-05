@@ -15,6 +15,13 @@ export const CustomParagraph = Paragraph.extend({
             "Mod-s": () => this.editor.commands.saveFile(),
         }
     },
+    parseHTML(){
+        return [
+            {
+                tag: 'p[name="w:p"]',
+            }
+        ];
+    },
     addAttributes() {
         // Return an object with attribute configuration
         return {

@@ -99,5 +99,4 @@ export const Footnote = Mark.create<FootnoteOptions>({
     };
   },
 
-
 });
