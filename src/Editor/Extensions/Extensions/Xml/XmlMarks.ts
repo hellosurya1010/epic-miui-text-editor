@@ -6,7 +6,7 @@ export interface FootnoteOptions {
   HTMLAttributes: Record<string, any>,
 }
 
-const marks = ["w:pPr", "w:pStyle", "w:r", "w:rPr", "w:rPr",  "w:t",];
+const marks = ["w:pPr", "w:pStyle", "w:r", "w:rPr",  "w:t",];
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

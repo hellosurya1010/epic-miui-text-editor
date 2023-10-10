@@ -19,8 +19,6 @@ export const HeadingPanel = () => {
     const paraStyleClassNames = editor?.storage.heading.paraStyleClassNames ?? [];
     const [scrollOffSets, setScrollOffSets] = useState({});
 
-    console.log(scrollOffSets);
-
     useEffect(() => {
         setScrollOffSets((pre) => {
             if (styleListRef.current != null) {
