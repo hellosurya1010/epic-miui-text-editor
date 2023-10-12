@@ -52,6 +52,8 @@ import { HeadingStyles } from "./Extensions/Extensions/HeadingStyles/HeadingStyl
 import { CustomParagraph } from "./Extensions/ExtendedExtensions/ExtendedParagraph";
 import { CharacterStyle } from "./Extensions/Extensions/CharacterStyle/CharacterStyle";
 import { XmlMarks } from "./Extensions/Extensions/Xml/XmlMarks";
+import { Comments } from "./Extensions/Extensions/Comments/Comments";
+import { User } from "./Extensions/Extensions/types/WordTypes";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -99,16 +101,23 @@ const CustomSuperscript = Superscript.extend({
 export default function useExtensions({
   placeholder,
 }: UseExtensionsOptions = {}): EditorOptions["extensions"] {
+
+  const user: User = {
+    author: 'Surya',
+    initials: 'S',
+  }
+
   return useMemo(() => {
     return [
 
       ...XmlMarks(),
       // Marks
+      Comments.configure({ user: user }),
       SearchAndReplace,
       TableOfContents,
       TrackChangeExtension.configure({
         enabled: true,
-        dataOpUserId: '12', 
+        dataOpUserId: '12',
         dataOpUserNickname: 'Admin',
         onStatusChange(status: boolean) {
           // myTrackChangeEnabled = status
